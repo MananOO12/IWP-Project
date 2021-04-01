@@ -1,4 +1,4 @@
-# IWPT-Project
+# IWPT
 
 A group project for CSE2015 Internet and Web Programming Technologies.
 
