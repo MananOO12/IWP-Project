@@ -22,13 +22,13 @@ Naman Rastogi
      - git checkout -b (Your-Branch-Name)
 
  -  Add Scripts related to your respective issues.
-     - git add <your-contribution>
+     - git add [your-contribution]
   
    -  Add a commit message !
       - git commit -m "Added your message"
     
   - Push changes
-    - git push origin <branch>
+    - git push origin [branch]
     
    - Create pull requests
      - [Mention the feature and files you have added in PR]
