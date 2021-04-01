@@ -1,4 +1,4 @@
-# IWPT-P
+# IWPT-Project
 
 A group project for CSE2015 Internet and Web Programming Technologies.
 
@@ -15,10 +15,8 @@ Manan Jain
 Naman Rastogi
 
 ## Steps to contribute
--  Fork the [repository](https://github.com/MananOO12/IWP-Project)
   -  Clone the fork [repo](https://github.com/MananOO12/IWP-Project)
-      - git clone https://github.com/<Your_Username>/IWP-Project
-      - (eg) git clone https://github.com/MananOO12/IWP-Project
+      - git clone https://github.com/MananOO12/IWP-Project
       
   -  Create new branch 
      - git checkout -b (Your-Branch-Name)
@@ -30,13 +28,13 @@ Naman Rastogi
       - git commit -m "Added your message"
     
   - Push changes
-    - git push origin
-  
-  - Push changes
-    -  git push -u origin <name_of_your_branch>
+    - git push origin <branch>
     
    - Create pull requests
      - [Mention the feature and files you have added in PR]
+
+  - Pull latest code
+    - git pull origin main
 
 ## Instructions 
 - Don't push/add directly in main branch.
@@ -44,11 +42,3 @@ Naman Rastogi
 - If a folder already exists, add your codes to it.
 - Make sure that there would be no repetitions of the code in other files.
 
-
-### Congratulations!🎇
-You contributed to open source project & sit relax wait for review.!
- Thank you.🤝
-
-### If you like this repo, drop a ⭐
-
-### Also stay connected for better projects in future.💫
