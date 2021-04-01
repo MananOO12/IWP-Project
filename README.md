@@ -39,6 +39,7 @@ Naman Rastogi
      - [Mention the feature and files you have added in PR]
 
 ## Instructions 
+- Don't push/add directly in main branch.
 - Add the files in respective folders only.
 - If a folder already exists, add your codes to it.
 - Make sure that there would be no repetitions of the code in other files.
