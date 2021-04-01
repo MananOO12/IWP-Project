@@ -1,0 +1,35 @@
+endl vs \n
+https://www.geeksforgeeks.org/endl-vs-n-in-cpp/
+
+ It is recommended to use cout << “\n”; instead of cout << endl;. endl is slower because it forces a flushing stream,
+ which is usually unnecessary (See this for details). (You’d need to flush if you were writing, say, an interactive
+ progress bar, but not when writing a million lines of data.) Write ‘\n instead of endl.
+
+scanf vs fgets
+https://www.cdn.geeksforgeeks.org/problem-with-scanf-when-there-is-fgetsgetsscanf-after-it/
+
+cin-cout vs scanf-printf
+https://www.geeksforgeeks.org/cincout-vs-scanfprintf/
+
+FAST IO
+https://www.geeksforgeeks.org/fast-io-for-competitive-programming/
+
+there is sync b/w scanf-cin so turn off by
+ios_base::sync_with_stdio(false);
+
+there is also sync b/w cin-cout so turn off by
+cin.tie(NULL);
+
+CP template for fast io
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    return 0;
+}
+
+reading line getline()
+https://www.cdn.geeksforgeeks.org/how-to-use-getline-in-c-when-there-are-black-lines-in-input/
