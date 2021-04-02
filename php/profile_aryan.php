@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style3.css?v=<?php echo time();?>">
+    <link rel="stylesheet" href="css/profile.css?v=<?php echo time();?>">
     <script
       src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
@@ -19,14 +19,14 @@
         <input type="text" id="search_box"
         placeholder="Search for people">
         <!-- <input type="image" src="search.png" id="search_btn"> -->
-        <img src="user11.jpg ">
+        <img src="images/Profile-images/user11.jpg ">
     </div>
     </div>
     <!-- cover area: -->
     <div id="ca1">
         <div id="ca2">
-            <img src="mountain.jpg" id="cover-photo">
-            <img src="user11.jpg" id="profile-photo">
+            <img src="images/Profile-images/mountain.jpg" id="cover-photo">
+            <img src="images/Profile-images/user11.jpg" id="profile-photo">
             <br>
             <div id="profile-name">
             Aryan Rathore
@@ -59,25 +59,25 @@
                         </div>
                     
                     <div class="friends">
-                        <img src="selfie.jpg" class="f-img">
+                        <img src="images/Profile-images/selfie.jpg" class="f-img">
                         <br>
                         Elli Abraham
 
                     </div>
                     <div class="friends">
-                        <img src="user2.jpg" class="f-img">
+                        <img src="images/Profile-images/user2.jpg" class="f-img">
                         <br>
                         Jack Moore
 
                     </div>
                     <div class="friends">
-                        <img src="user3.jpg" class="f-img">
+                        <img src="images/Profile-images/user3.jpg" class="f-img">
                         <br>
                         Sneha Singh
 
                     </div>
                     <div class="friends">
-                        <img src="user4.jpg" class="f-img">
+                        <img src="images/Profile-images/user4.jpg" class="f-img">
                         <br>
                         Klen Wright
 
@@ -97,7 +97,7 @@
                         <!-- post-1 -->
                         <div id="post">
                             <div>
-                                <img src="user2.jpg" style="width:75px;float:left">
+                                <img src="images/Profile-images/user2.jpg" style="width:75px;float:left">
                             </div>
                             <div >
                                 <div style="font-weight:bold;color:#4481eb;float:left">Jack Moore</div><br>
@@ -119,7 +119,7 @@
                         <!-- post-2 -->
                         <div id="post">
                             <div>
-                                <img src="selfie.jpg" style="width:75px;float:left">
+                                <img src="images/Profile-images/selfie.jpg" style="width:75px;float:left">
                             </div>
                             <div >
                                 <div style="font-weight:bold;color:#4481eb;float:left">Elli Abraham</div><br>
