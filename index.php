@@ -18,7 +18,7 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="#" class="sign-in-form">
+          <form autocomplete="off" action="#" class="sign-in-form">
             <h2 class="title">Sign in</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
@@ -45,8 +45,9 @@
               </a>
             </div>
           </form>
-          <form action="#" class="sign-up-form" id="form" class="invalid valid">
+          <form action="#" autocomplete="off" class="sign-up-form" id="form" class="invalid valid">
             <h2 class="title">Sign up</h2>
+            <div id="tab">
             <div class="input-field">
               <i class="fas fa-user"></i>
               <input
@@ -95,7 +96,9 @@
               />
               <span class="indicator2"></span>
             </div>
-            <input type="submit" class="btn" value="Sign up" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" class="btn" value="NEXT" onclick="Nextpage()" />
             <p class="social-text">Or Sign up with social platforms</p>
             <div class="social-media">
               <a href="#" class="social-icon">
@@ -110,6 +113,60 @@
               <a href="#" class="social-icon">
                 <i class="fab fa-linkedin-in"></i>
               </a>
+            </div>    
+        </div>
+            
+        <div id = "tab1">
+            <div class="input-field">
+                <i class="fas fa-flag"></i>
+                  <input type="text" placeholder="Country" name="nationality" id="nationality" required onblur="vaildateNationality();" />
+                  <span class="indicator4"></span>
+            </div>
+                 <!-- <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="radio" name="Male" id="Male" value="Male"/>
+                    <label for="Male">Male</label>
+                    <input type="radio" name="Female" id="Female" value="Female"/>
+                    <label for="Female">Female</label>
+                    
+                    <input type="radio" name="Others" id="Others" value="Others"/>
+                    <label for="Others">Others</label>
+                    <span class="indicator5"></span>
+                  </div>-->
+                  <!-- Old radio button -->
+                  
+                  <div class="input-field">
+						<i class="fas fa-user"></i>
+						<select class="form-control input-md" name="u_gender" required="required">
+							<option disabled>Select your Gender</option>
+							<option>Male</option>
+							<option>Female</option>
+							<option>Others</option>
+						</select>
+            <span class="indicator5"></span>
+					</div>
+          <!-- Drop down menu ends-->
+                  <div class="input-field">
+                    <i class="fas fa-calendar-day"></i>
+                    <input type="date" placeholder="date" name="dat" id="dat" required />
+                  </div>
+                  <input type="button" class="btn" value="PREVIOUS" onclick="Previouspage()"/>
+                  <input type="submit" class="btn" value="SUBMIT" />
+                  <p class="social-text">Or Sign up with social platforms</p>
+                  <div class="social-media">
+                    <a href="#" class="social-icon">
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                      <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                      <i class="fab fa-google"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                      <i class="fab fa-linkedin-in"></i>
+                    </a>
+                  </div>
             </div>
           </form>
         </div>
@@ -119,8 +176,7 @@
           <div class="content">
             <h3>New here ?</h3>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
-              ex ratione. Aliquid!
+              Please fill the following form after clicking the below button to sign up to <b>Chit-Chat</b> .
             </p>
             <button class="btn transparent" id="sign-up-btn">Sign up</button>
           </div>
@@ -130,8 +186,7 @@
           <div class="content">
             <h3>One of us ?</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-              laboriosam ad deleniti.
+              Please sign into <b>Chit-Chat</b> by filling up the following form after clicking the below button
             </p>
             <button class="btn transparent" id="sign-in-btn">Sign in</button>
           </div>
@@ -141,6 +196,5 @@
     </div>
     <script src="js/app.js"></script>
     <script src="js/valform.js"></script>
-
   </body>
 </html>
