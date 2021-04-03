@@ -26,7 +26,7 @@ input {
     width: 40px;
     height: 49px;
     float: right;
-    
+
 }
 /* #search_btn{
     z-index: 5;
@@ -56,18 +56,18 @@ input {
     text-align: center;
     background-color: white;
     color: #4481eb;
-    
+
 }
 #cover-photo{
     width: 100%;
 }
 #profile-photo{
-    width: 150px; 
+    width: 150px;
     height: 150px;
     margin-top: -250px;
     border-radius: 50%;
     border: solid 2px white;
-   
+
 }
 #profile-name{
     font-size: 30px;
@@ -104,7 +104,7 @@ input {
     text-align: left;
 }
 #box-2{
-    
+
     min-height: 400px;
     flex: 2.5;
     background-color:#b0d6e2 ;
@@ -136,7 +136,7 @@ input {
     border: solid thin #aaa;
     padding: 10px;
     background-color: white;
-    
+
 }
 #post-text{
     padding-left: 0px;
@@ -179,4 +179,19 @@ input {
 
 #comments{
     color: black;
+}
+
+/* Ateeth's css*/
+#txt1 {
+  display: none;
+}
+
+#bt2 {
+  display: none;
+  position: absolute;
+  left: 1050px;
+}
+
+#comments1 {
+  color: black;
 }
