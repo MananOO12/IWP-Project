@@ -166,6 +166,6 @@
         </div>
       </div>
     </div>
-        <script type="text/javascript" src="/js/profile.js"></script>
+        <script type="text/javascript" src="../js/profile.js"></script>
   </body>
 </html>
