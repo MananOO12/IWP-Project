@@ -10,7 +10,7 @@
       src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
     ></script>
-    
+
   </head>
   <body id="profile-body">
     <!-- top bar: -->
