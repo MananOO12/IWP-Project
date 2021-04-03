@@ -6,10 +6,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/profile.css?v=<?php echo time();?>">
+    <style>
+      #txt1 {
+        display: none;
+      }
+
+      #bt2 {
+        display: none;
+        position: absolute;
+        left: 1050px;
+      }
+
+      #comments1 {
+        color: black;
+      }
+      </style>
     <script
       src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
     ></script>
+    <script>
+      function EnterComment() {
+        var x = document.getElementById("txt");
+        x.style.display = "block";
+        document.getElementById("bt1").style.display = "block";
+      }
+
+      function PostComment() {
+        var a = "";
+        a = document.getElementById("txt").value;
+        document.getElementById("comments").innerHTML += "<pre>" + a + "<pre>";
+        document.getElementById("txt").value = "";
+        document.getElementById("txt").style.display = "none";
+        document.getElementById("bt1").style.display = "none";
+      }
+
+      function EnterComment1() {
+        var x = document.getElementById("txt1");
+        x.style.display = "block";
+        document.getElementById("bt2").style.display = "block";
+      }
+
+      function PostComment1() {
+        var a = "";
+        a = document.getElementById("txt1").value;
+        document.getElementById("comments1").innerHTML += "<pre>" + a + "<pre>";
+        document.getElementById("txt1").value = "";
+        document.getElementById("txt1").style.display = "none";
+        document.getElementById("bt2").style.display = "none";
+      }
+    </script>
+
 </head>
 <body id="profile-body">
     <!-- top bar: -->
@@ -102,15 +149,27 @@
                             <div >
                                 <div style="font-weight:bold;color:#4481eb;float:left">Jack Moore</div><br>
                                 <div style="text-align:left"> 
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatibus?
+                                Hey,how are you?
                                 <br><br>
                                 <a href="#">Like &nbsp</a>
-                                <a href="#">Comment &nbsp</a>
+                                <a href="#" onclick="EnterComment1();"> Comment &nbsp </a>
                                 <span style="color:#999">
                                 April 1 2021
-
                                 </span>
-                               
+                                <br /><br />
+                    <textarea id="txt1" name="txt" rows="10" cols="50">
+                    </textarea>
+                    <a
+                      href="#"
+                      id="bt2"
+                      value="Close Comment"
+                      onclick="PostComment1();"
+                    >
+                    Post
+                      
+                    </a>
+                    POSTED COMMENTS
+                    <div id="comments1"></div>
                                 </div>
 
                                
@@ -124,15 +183,28 @@
                             <div >
                                 <div style="font-weight:bold;color:#4481eb;float:left">Elli Abraham</div><br>
                                 <div style="text-align:left"> 
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, voluptatibus?
+                                It's been a long time since we met.Can we meet today?
                                 <br><br>
                                 <a href="#">Like &nbsp</a>
-                                <a href="#">Comment &nbsp</a>
+                                <a href="#" onclick="EnterComment1();">Comment &nbsp</a>
                                 <span style="color:#999">
                                 April 1 2021
 
                                 </span>
-                               
+                                <br /><br />
+                    <textarea id="txt1" name="txt" rows="10" cols="50">
+                    </textarea>
+                    <a
+                      href="#"
+                      id="bt2"
+                      value="Close Comment"
+                      onclick="PostComment1();"
+                    >
+                    Post
+                      
+                    </a>
+                    POSTED COMMENTS
+                    <div id="comments1"></div>
                                 </div>
 
                                
