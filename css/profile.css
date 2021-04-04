@@ -11,7 +11,7 @@ input {
   font-family: "Poppins", sans-serif;
 }
 #blue_bar{
-    background-image:linear-gradient(#4481eb 0%, #04befe 100%);
+    background-image:linear-gradient(#7b5af2 0%, #04befe 100%);
     height: 50px;
     width: 100%;
 }
@@ -55,7 +55,7 @@ input {
 #ca2{
     text-align: center;
     background-color: white;
-    color: #4481eb;
+    color: #7b5af2;
 
 }
 #cover-photo{
@@ -71,10 +71,12 @@ input {
 }
 #profile-name{
     font-size: 30px;
+    color: #552bee;
 }
 #ca2 a{
     text-decoration: none;
-    color: #4481eb;
+    /* color: #4481eb; */
+    color: #7b5af2;
 }
 /* #ca2 ul{
     display: inline;
@@ -112,20 +114,22 @@ input {
     padding: 20px;
     padding-right: 0px;
 }
-#profile-body{
-    background-color:#b0d6e2 ;
-}
+
 .f-img{
     width: 75px;
     float:left;
     margin: 8px;
+}
+
+.friends{
+  color: #4213ec;
 }
 #friends-bar{
     background-color: white;
     min-height: 400px;
     margin-top: 20px;
     padding: 8px;
-
+    overflow: auto;
 }
 .friends{
     clear: both;
@@ -138,6 +142,8 @@ input {
     background-color: white;
 
 }
+
+
 #post-text{
     padding-left: 0px;
    margin-right: 300px;
@@ -148,7 +154,7 @@ input {
 }
 #post-btn{
     float: right;
-    background-color: #4481eb;
+    background-color: #7b5af2;
     border: none;
     color: white;
     padding: 4px;
@@ -173,12 +179,12 @@ input {
 
   #bt1{
       display: none;
-      position: absolute;
-      left: 1050px;
+
   }
 
 #comments{
     color: black;
+    display: block ruby;
 }
 
 /* Ateeth's css*/
@@ -194,4 +200,32 @@ input {
 
 #comments1 {
   color: black;
+}
+
+/* like button*/
+
+.btn {
+
+  background-color: #7b5af2;
+  font-size: 14px;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 5px;
+  color: #e8efff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  margin: 10px
+}
+
+#profile{
+  padding: 0;
+  display: inline;
+  position: absolute;
+  right: 320px;
+  top: -5px;
+}
+
+.friends img, #post img{
+  border-radius: 50%;
+  height: 80px;
 }
