@@ -75,6 +75,8 @@
   		</div>
   	</div>
   </div>
+<!-- nav-bar ended -->
+
 
   <!-- cover area: -->
   <div id="ca1">
@@ -105,24 +107,24 @@
             <div style="color: gray">Friends <br /></div>
 
             <div class="friends">
+              <img src="../images/Profile-images/user11.jpg" class="f-img" />
+              <br />
+              Aryan Rathore
+            </div>
+            <div class="friends">
+              <img src="../images/Profile-images/manan.jpg" class="f-img" />
+              <br />
+              Manan Jain
+            </div>
+            <div class="friends">
+              <img src="../images/Profile-images/namanprofilepic.jpeg" class="f-img" />
+              <br />
+              Naman
+            </div>
+            <div class="friends">
               <img src="../images/Profile-images/selfie.jpg" class="f-img" />
               <br />
               Elli Abraham
-            </div>
-            <div class="friends">
-              <img src="../images/Profile-images/user2.jpg" class="f-img" />
-              <br />
-              Jack Moore
-            </div>
-            <div class="friends">
-              <img src="../images/Profile-images/user3.jpg" class="f-img" />
-              <br />
-              Sneha Singh
-            </div>
-            <div class="friends">
-              <img src="../images/Profile-images/user4.jpg" class="f-img" />
-              <br />
-              Klen Wright
             </div>
           </div>
         </div>
@@ -133,6 +135,7 @@
             <input type="submit" value="Post" id="post-btn" />
             <br />
           </div>
+
           <!-- posts -->
           <div id="post-bar">
             <!-- post-1 -->
@@ -151,7 +154,7 @@
                 <br />
                 <div>
                   <p id="comments">
-                    Had a very important meeting today and I'm surprised it went so well
+                  Hey,how are you?
                     <br /><br />
                   </p>
 
@@ -189,24 +192,25 @@
             <!-- post-2 -->
             <div id="post">
               <div>
-                <img src="../images/Profile-images/selfie.jpg" style="width: 75px; float: left" />
+                <img src="../images/Profile-images/user3.jpg" style="width: 75px; float: left" />
               </div>
               <div>
 
 
                 <!-- Changed css -->
                 <div class="friends" style="font-weight: bold; float: left ">
-                    <p style="margin-left:5px;">Jack Moore</p>
+                    <p style="margin-left:5px;">Sneha Singh</p>
                 </div>
                 <br />
                 <div>
                   <p id="comments">
-                    Had a very important meeting today and I'm surprised it went so well
+                  Can we meet today?
                     <br /><br />
                   </p>
 
 
                   <!-- Like comment button -->
+                  <!-- <a href="#">Like &nbsp</a> -->
                   <button class="btn like__btn2">
                     <span id="icon2"><i class="far fa-thumbs-up"></i></span>
                     <span id="count2">0</span> Like
@@ -218,7 +222,7 @@
                   </button>
                 <!-- end changed -->
 
-                  <span style="color: #999"> <?php echo time();?> </span>
+                  <span style="color: #999">  </span>
                   <br /><br />
                   <textarea id="txt1" name="txt" rows="10" cols="50">
                     </textarea>
