@@ -153,8 +153,7 @@
                 </div>
                 <br />
                 <div>
-                  <p id="comments" >
-                  <!-- style="margin-right:250px -->
+                  <p id="comments">
                   Hey,how are you?
                     <br /><br />
                   </p>
@@ -205,7 +204,7 @@
                 <br />
                 <div>
                   <p id="comments">
-                  It's been a long time since we met.Can we meet today?
+                  Can we meet today?
                     <br /><br />
                   </p>
 
@@ -223,7 +222,7 @@
                   </button>
                 <!-- end changed -->
 
-                  <span style="color: #999"></span>
+                  <span style="color: #999">  </span>
                   <br /><br />
                   <textarea id="txt1" name="txt" rows="10" cols="50">
                     </textarea>
