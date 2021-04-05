@@ -1,25 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
 
 *{
 	margin: 0;
 	padding: 0;
   list-style: none;
-	font-family: 'Jost', sans-serif;
+	font-family: 'Poppins', sans-serif;
 }
 
-body{
-	background: #e0dbef;
-}
+/* body{
+	background: black;
+} */
 
 .navbar{
-	background: #643fef;
+	background: #4d84e2;
 	width: 100%;
 	height: 60px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 50px;
-  box-shadow: 3px 3px 5px 6px #ccc;
+  /* box-shadow: 3px 3px 5px 6px rgb(204, 204, 204); */
 	position: fixed;
 }
 
@@ -30,7 +32,7 @@ body{
 	font-weight: 700;
 	letter-spacing: 2px;
 	font-size: 25px;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 }
 
 .navbar .nav_right > ul{
@@ -67,7 +69,7 @@ body{
 }
 
 .navbar .dd_menu .dd_left{
-	background: #643fef;
+	background: #4d84e2;
 	padding: 15px 20px;
 	border-top-left-radius: 15px;
 	border-bottom-left-radius: 15px;
@@ -116,7 +118,7 @@ ul{
   padding: 2px;
   border: none;
   border-radius: 50%;
-  background: #643fef;
+  background: #4d84e2;
   color: #d9d9d9;
   font-size: 20px;
   cursor: pointer;
@@ -137,7 +139,7 @@ ul{
 } */
 
 .fa-search{
-  background-color: #7a5cf0;
+  background-color: #7ea7ec;
   /* color: #d9d9d9
   border-radius: 50px;
   padding: 10px;
@@ -160,7 +162,7 @@ ul{
 } */
 
 body{
-	background: #e0dbef;
+	background: rgb(248, 246, 246);
 }
 
  /* .wrapper1{
@@ -171,7 +173,7 @@ body{
 } */
 
 .search_box{
-	background: #643fef;
+	background: #7ea7ec;
 	position: relative;
 	/* padding: 15px; */
 	border-radius: 50px;
@@ -182,7 +184,7 @@ body{
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
-	background: #7a5cf0;
+	background: #7ea7ec;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -193,12 +195,14 @@ body{
 
 .search_btn{
   margin-left: 8px;
+  position: absolute;
+  left: 350px;
 }
 
 .search_box .input_search{
 	outline: none;
 	border: 0;
-	background: #7a5cf0;
+	background: #7ea7ec;
 	border-radius: 50px;
   margin: 4px inherit 4px inherit;
 	padding: 7px 15px;

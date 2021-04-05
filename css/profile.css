@@ -11,7 +11,7 @@ input {
   font-family: "Poppins", sans-serif;
 }
 #blue_bar{
-    background-image:linear-gradient(#7b5af2 0%, #04befe 100%);
+    /* background-image:linear-gradient(#7b5af2 0%, #04befe 100%); */
     height: 50px;
     width: 100%;
 }
@@ -55,7 +55,7 @@ input {
 #ca2{
     text-align: center;
     background-color: white;
-    color: #7b5af2;
+    color: #4d84e2;
 
 }
 #cover-photo{
@@ -71,12 +71,12 @@ input {
 }
 #profile-name{
     font-size: 30px;
-    color: #552bee;
+    color: #4d84e2;
 }
 #ca2 a{
     text-decoration: none;
     /* color: #4481eb; */
-    color: #7b5af2;
+    color: #4d84e2;
 }
 /* #ca2 ul{
     display: inline;
@@ -101,7 +101,7 @@ input {
     min-height: 400px;
     flex: 1;
     /* background-color:#b0d6e2 ; */
-    background-color: #b0d6e2;
+    background-color: #4481eb;
     /* background-color:rgb(238, 186, 89); */
     text-align: left;
 }
@@ -109,7 +109,7 @@ input {
 
     min-height: 400px;
     flex: 2.5;
-    background-color:#b0d6e2 ;
+    background-color:#4481eb ;
     /* background-color:rgb(238, 186, 89); */
     padding: 20px;
     padding-right: 0px;
@@ -122,7 +122,7 @@ input {
 }
 
 .friends{
-  color: #4213ec;
+  color: #4d84e2;
 }
 #friends-bar{
     background-color: white;
@@ -130,6 +130,7 @@ input {
     margin-top: 20px;
     padding: 8px;
     overflow: auto;
+    margin-left: 5px;
 }
 .friends{
     clear: both;
@@ -140,8 +141,10 @@ input {
     border: solid thin #aaa;
     padding: 10px;
     background-color: white;
+    margin-right: 5px;
 
 }
+
 
 
 #post-text{
@@ -154,7 +157,7 @@ input {
 }
 #post-btn{
     float: right;
-    background-color: #7b5af2;
+    background-color: #5995fd;
     border: none;
     color: white;
     padding: 4px;
@@ -162,10 +165,14 @@ input {
     border-radius: 2px;
     width: 50px;
 }
+#post-btn:hover {
+    background-color: #4d84e2;
+  }
 #post-bar{
     margin-top: 20px;
     background-color: white;
     padding: 10px;
+    margin-right: 5px;
 }
 #post{
     padding: 4px;
@@ -185,6 +192,7 @@ input {
 #comments{
     color: black;
     display: block ruby;
+ 
 }
 
 /* Ateeth's css*/
@@ -206,7 +214,7 @@ input {
 
 .btn {
 
-  background-color: #7b5af2;
+  background-color: #5995fd;
   font-size: 14px;
   font-family: "Open Sans", sans-serif;
   border-radius: 5px;
@@ -216,6 +224,10 @@ input {
   cursor: pointer;
   margin: 10px
 }
+.btn:hover{
+    background-color: #4d84e2;
+}
+
 
 #profile{
   padding: 0;
