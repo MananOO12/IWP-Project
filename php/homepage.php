@@ -85,16 +85,16 @@
     </div>
     <div class="person live-active">
     <div class="profile-pic"></div>
-    <p class="name">Elli Abraham</p>
+    <p class="name">Manan Jain</p>
       <span><i class="fas fa-video"></i> Live</span>
       </div>
       <div class="person">
       <div class="profile-pic"></div>
-      <p class="name">Jack Moore</p>
+      <p class="name">Naman </p>
     </div>
     <div class="person">
       <div class="profile-pic"></div>
-      <p class="name">Sneha Singh</p>
+      <p class="name">Elli Abraham</p>
     </div>
     <div class="person">
       <div class="profile-pic"></div>
