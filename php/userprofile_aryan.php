@@ -221,8 +221,6 @@
                     Comment
                   </button>
                 <!-- end changed -->
-
-                  <span style="color: #999">  </span>
                   <br /><br />
                   <textarea id="txt1" name="txt" rows="10" cols="50">
                     </textarea>
