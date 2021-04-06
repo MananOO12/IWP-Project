@@ -119,27 +119,29 @@
 
     <section class="nav">
     <div class="icon active">
-      <i class="fas fa-fire"></i>
+      <i class="fas fa-fire" style="padding-top: 15px;"></i>
       <p>Home</p>
     </div>
     <div class="icon">
-      <i class="fas fa-globe"></i>
+      <i class="fas fa-globe" style="padding-top: 15px;"></i>
       <p>Live</p>
     </div>
     <div class="icon">
-      <i class="fas fa-comment-dots"></i>
+      <i class="fas fa-comment-dots" style="padding-top: 15px;"></i>
       <p>Chats</p>
     </div>
     <div class="icon">
-      <i class="fas fa-bell"></i>
+      <i class="fas fa-bell" style="padding-top: 15px;"></i>
       <p>Notifications</p>
     </div>
     <div class="icon">
-      <i class="fas fa-user"></i>
+      <i class="fas fa-user" style="padding-top: 15px;"></i>
       <p>Profile</p>
     </div>
   </section>
+
   <!-- posts -->
+  <div id="post">
   <section class="newsfeed">
 	  <!-- post-1 -->
 
@@ -252,7 +254,7 @@
 
 
 </section>
-    
+</div>
 <script>
     function toggle(){
         var x = document.getElementById("x");
