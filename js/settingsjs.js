@@ -58,7 +58,7 @@ var em , us , valpas , valrepas ; //to ensure the fields have valid data to be s
     if (
       (username.match(/^[a-z]/) || username.match(/^[A-Z]/)) &&
       username.match(/[A-Za-z0-9]+$/) &&
-      username.length > 5 &&
+      username.length > 2 &&
       username.length < 20
     ) {
       form.classList.add("valid3");
