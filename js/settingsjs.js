@@ -110,3 +110,17 @@ var em , us , valpas , valrepas ; //to ensure the fields have valid data to be s
     document.getElementById("demo").innerHTML += "<b>" + "EMAIL : " + "</b>" +  email + "<br>" ;
     document.getElementById("demo").innerHTML += "<b>" +  "PASSWORD : " + "</b>"  + pwd1 + "<br>";
   }
+
+
+/*dropdown*/
+  function toggle(){
+    var x = document.getElementById("x");
+    /*var y = document.getElementById("y");*/
+    if (x.style.display === "none") {
+x.style.display = "block";
+/*    y.style.display = "none"; */
+} else {
+x.style.display = "none";
+/*    y.style.display = "block"; */
+}
+}
