@@ -33,8 +33,6 @@
   position: absolute;
   right: 5px;
   border-radius: 50%;
- 
-  
 }
   .live {
     border: 2px solid black;
@@ -167,21 +165,27 @@
   .active {
     color: #FFDF3B !important;
   }
+
+
   .newsfeed {
     padding: 0 20px;
     z-index: -2;
     position: relative;
   }
+
+
   .card {
     width: 60%;
     height: 60%;
     background: yellow;
     box-shadow: 0 0 12px 2px rgba(0, 0, 0, .5);
     margin-bottom: 20px;
-    margin-left: 180px;
+    margin-left: 300px;
     border-radius: 10px;
     font-size: 14px;
     border: solid 2px black;
+    align-items: center;
+    align-content: center;
     
     /* margin-top: 10px; */
   }
@@ -189,7 +193,7 @@
   .card .picture-1 {
     background-image: url('../images/Post-images/post1.jfif');
     background-position: 50%;
-    background-size: cover;
+    background-size: contain;
     min-height: 400px;
     /* height: 500px; */
     /* height: 100%; */
@@ -234,7 +238,7 @@
   
   .card .profile-pic-1 {
     background-image: url('../images/Profile-images/user8.jfif');
-    background-position: 50%;
+    /*background-position: 50%;*/
     background-size: cover;
     height: 50px;
     width: 50px;
@@ -304,3 +308,4 @@
   .card .footer i {
     padding-right: 3px;
   }
+
