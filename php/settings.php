@@ -26,8 +26,8 @@
     ></script>
   </head>
 
-  <body id="profile-body">
-     <!-- nav bar -->
+ <!-- <body id="profile-body"-->
+    <!-- nav bar -->
   <div class="wrapper">
     <div class="navbar">
         <div class="logo">
@@ -39,14 +39,13 @@
       <input type="text" class="input_search" placeholder="What are you looking for?">
       <div class="search_btn"><i class="fas fa-search"></i></div>
     </div>
-    <button type="button" onclick="toggle();"><i class="fas fa-caret-down"></i><i class="fas fa-user-alt"></i></button>
-    <div id ="x"><!--For drop down list in nav bar--><!--new line-->
-
+    <button type="button" onclick="toggle();" id="bt1"><i class="fas fa-caret-down"></i><i class="fas fa-user-alt"></i></button>
+    
+    <div id ="x"><!--For drop down list in nav bar-->
         <div class="nav_right">
             <ul>
                 <li class="nr_li dd_main">
-          <!--<i class="fas fa-caret-down"></i>
-          <i class="fas fa-user-alt"></i> -->
+          
 
                     <div class="dd_menu">
                         <div class="dd_left">
@@ -71,8 +70,8 @@
                         </div>
                     </div>
                 </li>
-          </div>
-      </div>
+          </div><!--end of drop down list-->
+    </div>
                 <li class="nr_li">
 
           <button type="button" id="log-out" class="btn btn-light" data-toggle="tooltip" data-placement="bottom" title="Log Out">
@@ -81,6 +80,7 @@
           <!-- <p id="sign-out">Log Out</p> -->
                 </li>
             </ul>
+        </div>
     </div>
 </div>
 <!-- nav-bar ended -->
@@ -149,6 +149,8 @@
         <p id="demo"></p>
     </div>
 
+    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Popper JS -->
@@ -160,4 +162,3 @@
     <script src="../js/settingsjs.js"></script>
   </body>
 </html>
-
