@@ -36,19 +36,21 @@ let likeIcon = document.querySelector("#icon"),
 
 let clicked = false;
 
+if(likeBtn){
+  likeBtn.addEventListener("click", () => {
+    if (!clicked) {
+      clicked = true;
+      likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
+      count.textContent++;
+    } else {
+      clicked = false;
+      likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
+      count.textContent--;
+    }
 
-likeBtn.addEventListener("click", () => {
-  if (!clicked) {
-    clicked = true;
-    likeIcon.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
-    count.textContent++;
-  } else {
-    clicked = false;
-    likeIcon.innerHTML = `<i class="far fa-thumbs-up"></i>`;
-    count.textContent--;
-  }
+  });
 
-});
+}
 
 const likeBtn2 = document.querySelector(".like__btn2");
 let likeIcon2 = document.querySelector("#icon2"),
@@ -56,17 +58,20 @@ let likeIcon2 = document.querySelector("#icon2"),
 
 let clicked2 = false;
 
-likeBtn2.addEventListener("click", () => {
-  if (!clicked2) {
-    clicked2 = true;
-    likeIcon2.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
-    count2.textContent++;
-  } else {
-    clicked2 = false;
-    likeIcon2.innerHTML = `<i class="far fa-thumbs-up"></i>`;
-    count2.textContent--;
-  }
-});
+if(likeBtn2){
+  likeBtn2.addEventListener("click", () => {
+    if (!clicked2) {
+      clicked2 = true;
+      likeIcon2.innerHTML = `<i class="fas fa-thumbs-up"></i>`;
+      count2.textContent++;
+    } else {
+      clicked2 = false;
+      likeIcon2.innerHTML = `<i class="far fa-thumbs-up"></i>`;
+      count2.textContent--;
+    }
+  });
+}
+
 
 //navbar
 var dd_main = document.querySelector(".dd_main");
