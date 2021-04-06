@@ -52,7 +52,8 @@
     margin-bottom: 20px;
     margin-top: 60px;
     background-color: white;
-    
+    z-index: -1;
+    overflow: none;    
   }
   
   .live .person {
@@ -168,6 +169,8 @@
   }
   .newsfeed {
     padding: 0 20px;
+    z-index: -2;
+    position: relative;
   }
   .card {
     width: 60%;
