@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -147,13 +148,20 @@
     </div>
   </section>
 
+  <!-- empty div -->
+  <div class="empty">
+
+  </div>
+
   <!-- posts -->
   <div id="post">
   <section class="newsfeed">
 	  <!-- post-1 -->
 
 <div class="card">
-  <div class="picture-1"></div>
+  <div class="picture-1">
+  
+  </div>
   <div class="content">
     <div class="header">
       <div class="profile-pic-1"></div>
