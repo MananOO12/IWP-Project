@@ -187,6 +187,7 @@
     color: #acacac;
     transition: 0.5s;
     font-size: 1.1rem;
+    z-index: -1;
   }
   
   .input-field input {
@@ -222,3 +223,5 @@
   .btn:hover {
     background-color: #4d84e2;
   }
+
+

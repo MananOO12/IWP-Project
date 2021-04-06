@@ -17,7 +17,7 @@
 
     <link
       rel="stylesheet"
-      href="../css/profile-navbar.css?v=<?php echo time();?>"
+      href="../css/settings-navbarcss.css?v=<?php echo time();?>"
     />
 
     <script
@@ -26,70 +26,64 @@
     ></script>
   </head>
 
-  <body id="profile-body">
+ <!-- <body id="profile-body"-->
     <!-- nav bar -->
-    <div class="wrapper">
-      <div class="navbar">
+  <div class="wrapper">
+    <div class="navbar">
         <div class="logo">
-          <a href="homepage.php">Chit-Chat</a>
+            <a href="homepage.php">Chit-Chat</a>
         </div>
 
-        <div class="search_box">
-          <input
-            type="text"
-            class="input_search"
-            placeholder="What are you looking for?"
-          />
-          <div class="search_btn"><i class="fas fa-search"></i></div>
-        </div>
+    <div class="search_box">
 
-        <div class="nav_right">
-          <ul>
-            <li class="nr_li dd_main">
-              <i class="fas fa-caret-down"></i>
-              <i class="fas fa-user-alt"></i>
-
-              <div class="dd_menu">
-                <div class="dd_left">
-                  <ul>
-                    <li><i class="fas fa-home"></i></li>
-                    <li><i class="fas fa-blog"></i></li>
-                    <li></li>
-                    <li><i class="far fa-plus-square"></i></li>
-                    <li><i class="fas fa-cog"></i></li>
-                    <!-- <li><i class="fas fa-sign-out-alt"></i></li> -->
-                  </ul>
-                </div>
-                <div class="dd_right">
-                  <ul>
-                    <li>Home</li>
-                    <li style="font-size: 18px">My Posts</li>
-                    <li></li>
-                    <li>Friends</li>
-                    <li>Settings</li>
-                    <!-- <li>Logout</li> -->
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li class="nr_li">
-              <button
-                type="button"
-                id="log-out"
-                class="btn btn-light"
-                data-toggle="tooltip"
-                data-placement="bottom"
-                title="Log Out"
-              >
-                <i class="fas fa-sign-out-alt"></i>
-              </button>
-              <!-- <p id="sign-out">Log Out</p> -->
-            </li>
-          </ul>
-        </div>
-      </div>
+      <input type="text" class="input_search" placeholder="What are you looking for?">
+      <div class="search_btn"><i class="fas fa-search"></i></div>
     </div>
-    <!-- nav-bar ended -->
+    <button type="button" onclick="toggle();" id="bt1"><i class="fas fa-caret-down"></i><i class="fas fa-user-alt"></i></button>
+    
+    <div id ="x"><!--For drop down list in nav bar-->
+        <div class="nav_right">
+            <ul>
+                <li class="nr_li dd_main">
+          
+
+                    <div class="dd_menu">
+                        <div class="dd_left">
+                            <ul>
+                <li><i class="fas fa-home"></i></li>
+                                <li><i class="fas fa-blog"></i></li>
+                <li></li>
+                                <li><i class="far fa-plus-square"></i></li>
+                                <li><i class="fas fa-cog"></i></li>
+                                <!-- <li><i class="fas fa-sign-out-alt"></i></li> -->
+                            </ul>
+                        </div>
+                        <div class="dd_right">
+                            <ul>
+                <li>Home</li>
+                                <li style="font-size:18px">My Posts</li>
+                <li></li>
+                                <li>Friends</li>
+                                <li>Settings</li>
+                                <!-- <li>Logout</li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+          </div><!--end of drop down list-->
+    </div>
+                <li class="nr_li">
+
+          <button type="button" id="log-out" class="btn btn-light" data-toggle="tooltip" data-placement="bottom" title="Log Out">
+              <i class="fas fa-sign-out-alt"></i>
+          </button>
+          <!-- <p id="sign-out">Log Out</p> -->
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- nav-bar ended -->
     <br><br><br>
     <div id = "body">
         <form action="#" autocomplete="off" class="settings-form" id="form" class="invalid valid">
@@ -154,6 +148,8 @@
         </form>
         <p id="demo"></p>
     </div>
+
+    
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
