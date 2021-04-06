@@ -217,23 +217,23 @@
                   </button>
 
                   <!-- <a href="#" onclick="EnterComment();"> Comment </a> -->
-                  <button class="btn" onclick="EnterComment();">
+                  <button class="btn" onclick="EnterComment2();">
                     Comment
                   </button>
                 <!-- end changed -->
                   <br /><br />
-                  <textarea id="txt1" name="txt" rows="10" cols="50">
+                  <textarea id="txt2" name="txt" rows="10" cols="50">
                     </textarea>
 
                     <!-- changed -->
-                      <button id="bt1" class="btn" value="Close Comment" onclick="PostComment();">
+                      <button id="bt2" class="btn" value="Close Comment" onclick="PostComment2();">
                         Post
                       </button>
                     <!-- end changed -->
 
 
                   POSTED COMMENTS
-                  <div id="comments1"></div>
+                  <div id="comments2"></div>
                 </div>
               </div>
             </div>

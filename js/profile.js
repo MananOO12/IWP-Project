@@ -1,4 +1,4 @@
-// Ateeth's js
+// Comment js
 function EnterComment() {
   var x = document.getElementById("txt");
   x.style.display = "block";
@@ -14,18 +14,18 @@ function PostComment() {
   document.getElementById("bt1").style.display = "none";
 }
 
-function EnterComment1() {
-  var x = document.getElementById("txt1");
+function EnterComment2() {
+  var x = document.getElementById("txt2");
   x.style.display = "block";
   document.getElementById("bt2").style.display = "block";
 }
 
-function PostComment1() {
+function PostComment2() {
   var a = "";
-  a = document.getElementById("txt1").value;
-  document.getElementById("comments1").innerHTML += "<pre>" + a + "<pre>";
-  document.getElementById("txt1").value = "";
-  document.getElementById("txt1").style.display = "none";
+  a = document.getElementById("txt2").value;
+  document.getElementById("comments2").innerHTML += "<pre>" + a + "<pre>";
+  document.getElementById("txt2").value = "";
+  document.getElementById("txt2").style.display = "none";
   document.getElementById("bt2").style.display = "none";
 }
 

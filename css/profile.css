@@ -180,31 +180,17 @@ input {
     display: flex;
 }
 
-#txt {
+#txt, #txt2, #bt1, #bt2 {
     display: none;
   }
 
-  #bt1{
-      display: none;
-
-  }
 
 #comments{
     color: black;
     display: block ruby;
- 
+
 }
 
-/* Ateeth's css*/
-#txt1 {
-  display: none;
-}
-
-#bt2 {
-  display: none;
-  position: absolute;
-  left: 1050px;
-}
 
 #comments1 {
   color: black;
