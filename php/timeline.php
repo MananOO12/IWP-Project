@@ -12,7 +12,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
 
-  <link rel="stylesheet" href="../css/profile-navbar.css?v=<?php echo time();?>" />
+  <link rel="stylesheet" href="../css/navbar.css?v=<?php echo time();?>" />
   <link rel="stylesheet" href="../css/timeline.css?v=<?php echo time();?>" />
 
 
