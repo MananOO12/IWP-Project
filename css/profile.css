@@ -31,21 +31,7 @@ input {
 /* #search_btn{
     z-index: 5;
 } */
-#search_box{
-    width: 400px;
-    height:25px;
-    border-radius: 5px;
-    border: none;
-    padding: 4px;
-    font-size:14px;
-    /* background-image: url(search.png); */
-    /* background-repeat: no-repeat; */
-    /* background-position: right; */
-    position: absolute;
-    top: 13px;
-    /* z-index: 3; */
 
-}
 #ca1{
     width: 800px;
     margin: auto;
@@ -196,23 +182,7 @@ input {
   color: black;
 }
 
-/* like button*/
 
-.btn {
-
-  background-color: #5995fd;
-  font-size: 14px;
-  font-family: "Open Sans", sans-serif;
-  border-radius: 5px;
-  color: #e8efff;
-  outline: none;
-  border: none;
-  cursor: pointer;
-  margin: 10px
-}
-.btn:hover{
-    background-color: #4d84e2;
-}
 
 
 #profile{

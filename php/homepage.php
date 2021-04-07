@@ -15,7 +15,7 @@
 
 
   <link rel="stylesheet" href="../css/homepage.css?v=<?php echo time();?>" />
-  <link rel="stylesheet" href="../css/homepage-navbar.css?v=<?php echo time();?>" />
+  <link rel="stylesheet" href="../css/navbar.css?v=<?php echo time();?>" />
 
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
 
@@ -25,67 +25,60 @@
 
   <!-- nav bar -->
   <div class="wrapper">
-    <div class="navbar">
-        <div class="logo">
-            <a href="homepage.php">Chit-Chat</a>
-        </div>
+  	<div class="navbar">
+  		<div class="logo">
+  			<a href="homepage.php">Chit-Chat</a>
+  		</div>
 
-    <div class="search_box">
+      <div class="search_box">
 
-      <input type="text" class="input_search" placeholder="What are you looking for?">
-      <div class="search_btn"><i class="fas fa-search"></i></div>
-    </div>
+        <input type="text" class="input_search" placeholder="What are you looking for?">
+        <div class="search_btn"><i class="fas fa-search"></i></div>
+      </div>
 
-     <button type="button" onclick="toggle();" id="profile"> <!-- -->
-      <i class="fas fa-caret-down"></i>
-      <i class="fas fa-user-alt"></i>
-    </button>
 
-    <!-- <div id ="x"> -->
-    <!--For drop down list in nav bar--><!--new line-->
+  		<div class="nav_right">
+  			<ul>
+  				<li class="nr_li dd_main">
+            <i class="fas fa-caret-down"></i>
+            <i class="fas fa-user-alt"></i>
 
-        <div class="nav_right">
-            <ul>
-                <li class="nr_li dd_main active">
-          <!--<i class="fas fa-caret-down"></i>
-          <i class="fas fa-user-alt"></i> -->
+  					<div class="dd_menu">
+  						<div class="dd_left">
+  							<ul>
+                  <li><i class="fas fa-home"></i></li>
+  								<li><i class="fas fa-blog"></i></li>
+                  <li></li>
+  								<li><i class="far fa-plus-square"></i></li>
+  								<li><i class="fas fa-cog"></i></li>
+  								<!-- <li><i class="fas fa-sign-out-alt"></i></li> -->
+  							</ul>
+  						</div>
+  						<div class="dd_right">
+  							<ul>
+                  <li>Home</li>
+  								<li style="font-size:18px">My Posts</li>
+                  <li></li>
+  								<li>Friends</li>
+  								<li>Settings</li>
+  								<!-- <li>Logout</li> -->
+  							</ul>
+  						</div>
+  					</div>
+  				</li>
+  				<li class="nr_li">
 
-                    <div class="dd_menu">
-                        <div class="dd_left">
-                            <ul>
-                <li><i class="fas fa-home"></i></li>
-                                <li><i class="fas fa-blog"></i></li>
-                <li></li>
-                                <li><i class="far fa-plus-square"></i></li>
-                                <li><i class="fas fa-cog"></i></li>
-                                <!-- <li><i class="fas fa-sign-out-alt"></i></li> -->
-                            </ul>
-                        </div>
-                        <div class="dd_right">
-                            <ul>
-                <li>Home</li>
-                                <li style="font-size:18px">My Posts</li>
-                <li></li>
-                                <li>Friends</li>
-                                <li>Settings</li>
-                                <!-- <li>Logout</li> -->
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-          </div>
-      <!-- </div> -->
-                <li class="nr_li">
-
-          <button type="button" id="log-out" class="btn btn-light" data-toggle="tooltip" data-placement="bottom" title="Log Out">
-              <i class="fas fa-sign-out-alt"></i>
-          </button>
-          <!-- <p id="sign-out">Log Out</p> -->
-                </li>
-            </ul>
-    </div>
-</div>
+            <button type="button" id="log-out" class="btn btn-light" data-toggle="tooltip" data-placement="bottom" title="Log Out">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+            <!-- <p id="sign-out">Log Out</p> -->
+  				</li>
+  			</ul>
+  		</div>
+  	</div>
+  </div>
 <!-- nav-bar ended -->
+
 <!-- Firends list -->
 
 <section class="live">
@@ -160,7 +153,7 @@
 
 <div class="card">
   <div class="picture-1">
-  
+
   </div>
   <div class="content">
     <div class="header">
@@ -271,45 +264,14 @@
 </section>
 </div>
 <script type="text/javascript">
-//   function toggle(){
-//       var x = document.getElementById("x");
-//
-//       if (x.style.display === "none") {
-//   x.style.display = "block";
-// } else {
-//   x.style.display = "none";
-//
-// }
-//   }
-
 //navbar
 var dd_main = document.querySelector(".dd_main");
-function toggle(){
-flag = true;
-console.log("Hello");
-if(dd_main){
-  console.log("bye");
-  if(flag){
-    console.log("got");
-    dd_main.classList.toggle("active");
-    flag=false;
-  }
- }
-}
-// if(dd_main)
-// {
-//   console.log("bye1");
-//   dd_main.addEventListener("click", function(){
-//
-//     this.classList.toggle("active");
-//     console.log("bye2");
-//   });
-// }
 
-
+dd_main.addEventListener("click", function(){
+  this.classList.toggle("active");
+});
 </script>
 
-  <script type="text/javascript" src="../js/profile.js"></script>
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 

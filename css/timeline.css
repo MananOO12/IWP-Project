@@ -10,6 +10,13 @@ body {
   background: #ffffff;
 }
 
+/* Timeline navbar */
+
+.navbar .nav_right > ul, .navbar .logo a {
+    position: unset;
+}
+
+
 .timeline {
   position: relative;
   width: 100%;
@@ -147,6 +154,7 @@ body {
   color: #000000;
 }
 
+
 @media (max-width: 767.98px) {
   .timeline::after {
     left: 90px;
@@ -162,7 +170,7 @@ body {
     left: 0%;
   }
 
-  .container.left::after, 
+  .container.left::after,
   .container.right::after {
     left: 82px;
   }
