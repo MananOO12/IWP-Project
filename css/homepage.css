@@ -40,19 +40,15 @@
 
   .live {
     border: 2px solid black;
-    position: -webkit-sticky;
-    position: sticky;
+    border-radius: 8px;
     position: fixed;
     top: 0px;
-    /* z-index: 1; */
     height: 105px;
-    width: 100%;
+    width: 99%;
     display: flex;
     justify-content: space-between;
-    overflow-x: scroll;
     padding: 10px 0 10px 20px;
-    margin-bottom: 20px;
-    margin-top: 60px;
+    margin: 60px 0px 20px 1px;
     background-color: white;
     z-index: -1;
     overflow: none;

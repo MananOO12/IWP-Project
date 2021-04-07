@@ -150,7 +150,10 @@ input {
 
 }
 
-
+#friends_btn{
+      border: none;
+      background-color: transparent;
+}
 
 #post-text{
     padding-left: 0px;
