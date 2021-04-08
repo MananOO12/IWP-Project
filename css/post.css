@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+#heading{
+  font-size: 25px;
+  margin-left:10px ;
+}
+#post{
+    position: absolute;
+    top: 100px;
+    z-index: 1;
+}
+.navbar{
+    z-index: 5;
+}
+body{
+    color: #4481eb;
+    font-family: "Poppins",sans-serif;
+}
+.card{
+    margin-left: 300px;
+    height: 700px;
+    width: 1000px;
+    border: solid 2px black;
+    box-shadow: 0 0 12px 2px rgba(0, 0, 0, .5);
+    border-radius: 2%;
+    margin-bottom: 10px;
+    background-color: yellow;
+  }
+  .card .picture-1 {
+    background-image: url('../images/Post-images/selfpost-1.jpg');
+    /* background-position: 50%; */
+    background-size: cover;
+    min-height: 400px;
+    height: 500px;
+    /* height: 100%; */
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 0px;
+  }
+  .card .picture-2 {
+    background-image: url('../images/Post-images/selfpost-2.jpg');
+    /* background-position: 50%; */
+    background-size: cover;
+    min-height: 400px;
+    height: 500px;
+    /* height: 100%; */
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 0px;
+  }
+  .card .picture-3 {
+    background-image: url('../images/Post-images/selfpost-3.jpg');
+    /* background-position: 50%; */
+    background-size: cover;
+    min-height: 400px;
+    height: 500px;
+    /* height: 100%; */
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: 0px;
+  }
+  .card .profile-pic-1 {
+    background-image: url('../images/Profile-images/user11.jpg');
+    background-position: 50%;
+    background-size: cover;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    /* margin-bottom: 10px; */
+  }
+  .card .detail {
+    margin-left: 10px;
+    /* background-color: tomato; */
+    /* margin-top: 10px; */
+  }
+
+  .card .posted {
+    font-size: 10px;
+    padding-top: 3px;
+  }
+
+  .card .desc {
+    padding-top: 10px;
+    line-height: 1.5;
+  }
+
+  .card .tags {
+    font-size: 12px;
+    color: orange;
+    /* padding-top: 30px; */
+  }
+
+  .card .footer {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding-top: 20px;
+    padding-left: 110px;
+  }
+
+
+  .card .footer .like {
+    flex: 1;
+  }
+
+  .card .footer .comment {
+    flex: 1;
+  }
+
+  .card .footer .share {
+    flex: 1;
+  }
+
+  .card .footer i {
+    padding-right: 3px;
+  }
