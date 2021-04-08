@@ -1,0 +1,16 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .about{
+      color:black ;
+      font-size: larger;
+      text-align: center;
+      font-family: 'Noto Sans KR', sans-serif;
+    margin-top: 50px;
+    min-height: 400px;
+    
+  }
+  
