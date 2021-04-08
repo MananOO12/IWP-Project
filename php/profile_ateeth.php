@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 
   <link rel="stylesheet" href="../css/profile.css?v=<?php echo time();?>" />
-  <link rel="stylesheet" href="../css/profile-navbar.css?v=<?php echo time();?>" />
+  <link rel="stylesheet" href="../css/navbar.css?v=<?php echo time();?>" />
 
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
 
