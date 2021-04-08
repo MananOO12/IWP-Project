@@ -95,11 +95,14 @@ body{
   .card .footer {
     display: flex;
     justify-content: space-between;
+    align-content: center;
     padding-top: 20px;
+    padding-left: 110px;
   }
 
+
   .card .footer .like {
-    flex: 0 0 25%;
+    flex: 1;
   }
 
   .card .footer .comment {
@@ -107,7 +110,7 @@ body{
   }
 
   .card .footer .share {
-    flex: 0 0 18%;
+    flex: 1;
   }
 
   .card .footer i {
