@@ -1,0 +1,11 @@
+* {
+    box-sizing: border-box;
+ }
+ .imageColumn {
+    float: left;
+    width: 25%;
+    padding: 10px;
+ }
+ h1{
+    text-align: center;
+ }
