@@ -180,7 +180,7 @@
             </p>
             <button class="btn transparent" id="sign-up-btn">Sign up</button>
           </div>
-          <img src="images/log.svg" class="image" alt="" />
+          <img src="../images/log.svg" class="image" alt="" />
         </div>
         <div class="panel right-panel">
           <div class="content">
@@ -190,7 +190,7 @@
             </p>
             <button class="btn transparent" id="sign-in-btn">Sign in</button>
           </div>
-          <img src="images/register.svg" class="image" alt="" />
+          <img src="../images/register.svg" class="image" alt="" />
         </div>
       </div>
     </div>

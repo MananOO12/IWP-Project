@@ -83,6 +83,14 @@
     <div id="ca2">
       <img src="../images/Profile-images/mountain.jpg" id="cover-photo" />
       <img src="../images/Profile-images/user11.jpg" id="profile-photo" />
+      <div class="camera">
+      <button > 
+        <i class="fas fa-camera" ></i>
+     </button>
+
+      </div>
+      
+      
       <br />
       <div id="profile-name">Aryan Rathore</div>
 

@@ -46,6 +46,7 @@ input {
 }
 #cover-photo{
     width: 100%;
+    height:80vh;
 }
 #profile-photo{
     width: 150px;
@@ -53,7 +54,16 @@ input {
     margin-top: -250px;
     border-radius: 50%;
     border: solid 2px white;
+    object-fit: cover;
 
+}
+.camera{
+    position: absolute;
+    top:200px;
+    left:650px;
+}
+.camera button{
+    width: 50px;
 }
 #profile-name{
     font-size: 30px;
