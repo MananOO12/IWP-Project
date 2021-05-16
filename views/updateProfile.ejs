@@ -1,0 +1,207 @@
+<%- include ("includes/header")%>
+    <!-- cover area: -->
+    <div id="ca1">
+        <div id="ca2">
+            <figure>
+                <img class="cover-photo" id="cover-photo" style="width:100%; height:400px;object-fit: cover;">
+            </figure>
+            <form class="edit-photo" id="form-cover-photo" onsubmit="return false;">
+
+                <label class="fileContainer">
+                    <i class="fas fa-paint-brush" id="cvr-cam"></i>
+                    <input type="file" accept="image/*" name="coverPhoto" onchange="uploadCoverPhoto()" required />
+                </label>
+            </form>
+            <!-- Profile Image: -->
+            <div class="container-fluid">
+                <div class="row merged">
+                    <div class="col md-2">
+                        <div class="user-avatar">
+                            <figure>
+                                <img class="profile-image" id="profile-image">
+                                <form class="edit-photo" id="form-upload-image" onsubmit="return false;">
+
+                                    <label class="fileContainer">
+                                        <i class="fa fa-camera-retro" id="prf-cam"></i>
+                                        <input type="file" accept="image/*" name="profileImage"
+                                            onchange="uploadImage();" required />
+                                    </label>
+                                </form>
+
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="timeline-info">
+                            <ul>
+                                <li class="admin-name">
+                                    <h5 class="user-name" style="padding-top: 20px; padding-bottom: 20px;"></h5>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <br />
+
+
+
+        </div>
+    </div>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+    <script>
+        var isUpdateProfile = true;
+        function showProfileData() {
+            document.querySelector(".cover-photo").setAttribute("src", mainURL + "/" + window.user.coverPhoto);
+            document.querySelector(".profile-image").setAttribute("src", mainURL + "/" + window.user.profileImage);
+
+            document.querySelector(".user-name").innerHTML = window.user.username;
+            document.querySelector(".email").value = window.user.email;
+            document.querySelector(".dob").value = window.user.dob;
+            document.querySelector(".city").value = window.user.city;
+            document.querySelector(".country").value = window.user.country;
+            document.querySelector(".aboutMe").value = window.user.aboutMe;
+        }
+        function uploadCoverPhoto(form) {
+            var form = document.getElementById("form-cover-photo");
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/uploadCoverPhoto", true);
+            ajax.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = JSON.parse(this.responseText);
+                    document.getElementById("cover-photo").setAttribute("src", response.data);
+
+                }
+            };
+            var formData = new FormData(form);
+            formData.append("accessToken", localStorage.getItem("accessToken"));
+            ajax.send(formData);
+            return false;
+
+        }
+        function uploadImage(form) {
+            var form = document.getElementById("form-upload-image");
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/uploadProfileImage", true);
+            ajax.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var response = JSON.parse(this.responseText);
+                    document.getElementById("profile-image").setAttribute("src", response.data);
+
+                }
+            };
+            var formData = new FormData(form);
+            formData.append("accessToken", localStorage.getItem("accessToken"));
+            ajax.send(formData);
+            return false;
+        }
+    </script>
+    <script>
+        function doUpdateProfile(form) {
+            form.submit.setAttribute("disabled", "disabled");
+            form.submit.innerHTML = "<span>Loading...</span>";
+            var ajax = new XMLHttpRequest();
+            ajax.open("POST", "/updateProfile", true);
+            ajax.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    form.submit.removeAttribute("disabled");
+                    form.submit.innerHTML = "<span>Save</span>";
+                    var response = JSON.parse(this.responseText);
+
+                    alert(response.message);
+
+
+                }
+            };
+            var formData = new FormData(form);
+            formData.append("accessToken", localStorage.getItem("accessToken"));
+            ajax.send(formData);
+            return false;
+
+        }
+    </script>
+    <section style="z-index: 2;">
+        <div class="gap gray bg">
+
+            <div class="container-fluid">
+
+                <div class="row" id="page-contents">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="central-meta">
+                            <div class="editing-info">
+                                <h2 class="f-title">
+                                    Update profile
+                                </h2>
+                                <form onsubmit="return doUpdateProfile(this);">
+
+                                    <div class="form-group">
+
+                                        <label class="control-label">Email:</label><br>
+                                        <input type="email" class="email" style="width:400px ;" />
+
+                                    </div>
+                                    <br><br>
+                                    <div class="form-group">
+
+                                        <label class="control-label">Date of Birth:</label><br>
+                                        <input type="date" class="dob" name="dob" style="width:400px ;" />
+
+                                    </div>
+                                    <br><br>
+                                    <div class="form-group">
+
+                                        <label class="control-label">City:</label><br>
+                                        <input type="text" class="city" name="city" style="width:400px ;" />
+
+                                    </div>
+                                    <br><br>
+                                    <div class="form-group">
+
+                                        <label class="control-label">Country:</label><br>
+                                        <input type="text" class="country" name="country" style="width:400px ;" />
+
+                                    </div>
+                                    <br><br>
+
+                                    <div class="form-group">
+                                        <label class="control-label">About Me:</label><br>
+                                        <textarea name="aboutMe" class="aboutMe" rows="10" cols="50"></textarea>
+
+
+
+                                    </div>
+                                    <button type="submit" name="submit">
+                                        <span>Save</span>
+                                    </button>
+                                </form>
+
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </div>
+
+
+
+        </div>
+    </section>
+
+    <%- include ("includes/footer")%>
