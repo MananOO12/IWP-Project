@@ -25,6 +25,7 @@
         </section>
         <script>
             var isHomePage = true;
+            var ctr = 0   , cap;
             function previewPostImage(self) {
                 var file = self.files;
                 if (file.length > 0) {
@@ -73,6 +74,19 @@
                 return false;
 
             }
+
+            // function update(c){
+            //   alert(c) ;
+            // }
+            // function display(x){
+            //
+            //   var y = "txt" + x ;
+            //   var z = document.getElementById(y).value ;
+            //   var w = "cmt" + x ;
+            //   document.getElementById(w).innerHTML += z ;
+            //   document.getElementById(y).innerHTML = "" ;
+            // }
+
             function showNewsfeed() {
                 var ajax = new XMLHttpRequest();
                 ajax.open("POST", "/getNewsfeed", true);
@@ -92,7 +106,9 @@
                             html += '<div class = "friend-name">';
                             html += '<ins>';
                             html += '<a href="/user/' + data.user._id + '">';
+
                             html += data.user.username;
+
                             html += '</a>';
                             html += '</ins>';
                             var createdAt = new Date(data.createdAt);
@@ -104,6 +120,7 @@
                             html += '<div class="description">';
                             html += '<p>';
                             html += data.caption;
+
                             html += '</p>';
                             html += '</div>';
                             if (data.image != "") {
@@ -114,11 +131,40 @@
                                 html += '<video style="height:359px ; width:100%;" controls src="' + mainURL + "/" + data.video + '"></video>';
 
                             }
-                            html += '</div>';
-                            html += '</div>';
-                            html += '</div>';
+
                             html += '</div>';
 
+                            //posted comments displayed only if atleast 1 comment has been posted
+                            if(data.comments.length > 0 ){
+                            html += '<div class = "comments">' ;
+                            html += '<h3>POSTED COMMENTS</h3>'  ;
+                            for( var i = 0 ; i < data.comments.length ; ++i){
+                              html += data.comments[i] +'<br >' ;
+                            }
+
+                            html += '</div>' ;
+
+                          }
+
+                            //comments
+                              html += '<div>';
+                              html += '<form  method = "post" action = "/comment" >' ;
+                              html += ' <textarea rows="2" name="commentBody" placeholder="Provide your comment" ></textarea> '  ;
+                              //onkeydown= "update(' + a + ');"
+                              html += '<input type = "hidden" value = ' + response.data[a].createdAt + ' name = "No">' ;
+                              html += '<button type="submit">Post Comment</button></form>';
+                              //id = "txt'+ ctr + '";
+                              // html += ' <button  id="'+ ctr + '" onclick="display(this.id);">Post Comment</button></form> '  ;
+                              html += '</div>' ;
+                              // html += '<div> '  ;
+                              // html += ' <p id="cmt' + ctr + '"></p>' ;
+                              // html += '</div>' ;
+                              // ++ctr ;
+                            // //comments part end
+
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
 
 
 
