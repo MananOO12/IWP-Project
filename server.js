@@ -292,6 +292,88 @@ http.listen(3000, function () {
                 }
             });
         });
+
+
+        app.post("/like", function(req, res){ //likers to the database
+          let liked = req.fields.liked;//body of comment
+          let num = Number(req.fields.Num) ; //createdAt field
+
+
+          database.collection("posts").updateOne({
+            "createdAt": num
+          },
+          {$addToSet:
+            {
+              "likers": liked
+            }} ,
+            function (err) {
+              if (err) {
+                console.log(err);
+              }
+              else{
+              console.log("Success update of likers");
+                  // console.log(serial)
+                  //   console.log(comment) ;
+            }
+          }
+        );
+        res.redirect("/homepage") ;
+        });
+
+
+        app.post("/dislike", function(req, res){ //remove dislikers from the database
+            let liked = req.fields.liked;//body of comment
+                  let num = Number(req.fields.Num) ; //createdAt field
+
+
+                  database.collection("posts").updateOne({
+                    "createdAt": num
+                  },
+                  {$pull:
+                    {
+                      "likers": liked
+                    }} ,
+                    function (err) {
+                      if (err) {
+                        console.log(err);
+                      }
+                      else{
+                      console.log("Success deletion of likers");
+                          // console.log(serial)
+                          //   console.log(comment) ;
+                    }
+                  }
+                );
+                res.redirect("/homepage") ;
+                });
+
+
+        app.post("/comment", function(req, res){ //pushing comments to the database
+          let comment = req.fields.commentBody ;//body of comment
+          let serial = req.fields.No ; //createdAt field
+          serial = Number(serial) ;
+
+          database.collection("posts").updateOne({
+            "createdAt": serial
+          },
+          {$push:
+            {
+              "comments": comment
+            }} ,
+            function (err) {
+              if (err) {
+                console.log(err);
+              }
+              else{
+              console.log("Success update of comments");
+                  console.log(serial)
+                    console.log(comment) ;
+            }
+          }
+        );
+        res.redirect("/homepage") ;
+        });
+
         app.get("/homepage", function (req, res) {
             res.render("homepage");
         });
@@ -324,7 +406,7 @@ http.listen(3000, function () {
 
                         });
                     }
-                    database.collection("posts").insertOne({
+                    database.collection("posts").insertOne({ //posts inserting
                         "caption": caption,
                         "image": image,
                         "video": video,
@@ -399,5 +481,3 @@ http.listen(3000, function () {
 
     });
 });
-
-
