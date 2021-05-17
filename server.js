@@ -292,33 +292,6 @@ http.listen(3000, function () {
                 }
             });
         });
-
-        app.post("/comment", function(req, res){ //pushing comments to the database
-          let comment = req.fields.commentBody ;//body of comment
-          let serial = req.fields.No ; //createdAt field
-          serial = Number(serial) ;
-
-          database.collection("posts").updateOne({
-            "createdAt": serial
-          },
-          {$push:
-            {
-              "comments": comment
-            }} ,
-            function (err) {
-              if (err) {
-                console.log(err);
-              }
-              else{
-              console.log("Success update of comments");
-                  console.log(serial)
-                    console.log(comment) ;
-            }
-          }
-        );
-        res.redirect("/homepage") ;
-        });
-
         app.get("/homepage", function (req, res) {
             res.render("homepage");
         });
@@ -351,7 +324,7 @@ http.listen(3000, function () {
 
                         });
                     }
-                    database.collection("posts").insertOne({ //posts inserting
+                    database.collection("posts").insertOne({
                         "caption": caption,
                         "image": image,
                         "video": video,
@@ -426,3 +399,5 @@ http.listen(3000, function () {
 
     });
 });
+
+
