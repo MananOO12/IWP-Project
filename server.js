@@ -396,12 +396,40 @@ http.listen(3000, function () {
                 } else {
                     if (req.files.image.size > 0 && req.files.image.type.includes("image")) {
                         image = "public/images/" + new Date().getTime() + "-" + req.files.image.name;
+                        console.log(image) ; 
                         fileSystem.rename(req.files.image.path, image, function (error) {
 
                         });
                     }
+
+                    // if (req.files.profileImage.size > 0 && req.files.profileImage.type.includes("image")) {
+                    //     if (user.profileImage != "") {
+                    //         fileSystem.unlink(user.profileImage, function (error) {
+                    //
+                    //         });
+                    //     }
+                    //     profileImage = "public/images/" + new Date().getTime() + "-" + req.files.profileImage.name;
+                    //     fileSystem.rename(req.files.profileImage.path, profileImage, function (error) {
+                    //
+                    //     });
+                    //     database.collection("users").updateOne({
+                    //         "accessToken": accessToken
+                    //     }, {
+                    //         $set: {
+                    //             "profileImage": profileImage
+                    //         }
+                    //     }, function (error, data) {
+                    //         res.json({
+                    //             "status": "status",
+                    //             "message": "Profile Image has been updated.",
+                    //             data: mainURL + "/" + profileImage
+                    //
+                    //         });
+                    //     });
+
+
                     if (req.files.video.size > 0 && req.files.video.type.includes("video")) {
-                        image = "public/videos/" + new Date().getTime() + "-" + req.files.video.name;
+                        videos = "public/videos/" + new Date().getTime() + "-" + req.files.video.name;
                         fileSystem.rename(req.files.video.path, video, function (error) {
 
                         });
