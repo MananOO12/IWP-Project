@@ -107,6 +107,15 @@
     }
   }
 
+  function toggleComments(z){  //toggle between display and hide of post comments
+    var d = document.getElementById("cmt" + z);
+    if (d.style.display === "none") {
+      d.style.display = "block";
+    } else {
+      d.style.display = "none";
+    }
+  }
+
   function showNewsfeed() {
     var ajax = new XMLHttpRequest();
     ajax.open("POST", "/getNewsfeed", true);
@@ -116,8 +125,9 @@
         var html = "";
         for (var a = 0; a < response.data.length; a++) {
           var ctr = 10000 - a; //for index of dislike button
-
           var data = response.data[a];
+
+          var b = a + 10000 ; //id for view comments
           html += '<div class="central-meta item">';
           html += '<div class="user-post">';
           html += '<div class="friend-info">';
@@ -175,9 +185,10 @@
 
           html += '</div>';
 
+          html += '<button type="button" class = "viewcommentsBtn" id = "' + b + '" onclick = "toggleComments(this.id);">View Comments</button>';
           //posted comments displayed only if atleast 1 comment has been posted
           if (data.comments.length > 0) {
-            html += '<div class = "comments">';
+            html += '<div class = "comments" id ="cmt' + b + '" >';
             html += '<h3>POSTED COMMENTS</h3>';
             for (var i = 0; i < data.comments.length; ++i) {
               html +=  '<span style = "color:red"> ' + data.personCommented[i] + ' </span> :    ' ;
@@ -187,6 +198,8 @@
             html += '</div>';
 
           }
+
+          html += '<br><br>';
 
           //comments
           html += '<div>';
