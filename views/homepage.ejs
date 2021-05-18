@@ -153,8 +153,8 @@
           html += '</button>';
           html += '&nbsp;&nbsp';
           html += '<button onclick = "change(this.id);" id = "' + a + '">';
-          html += '<input type ="hidden" value = "' + window.user.username + '" name = "liked">';
           html += '<input type = "hidden" value = ' + response.data[a].createdAt + ' name = "Num">';
+          html += '<input type ="hidden" value = "' + window.user.username + '" name = "liked">';
           html += '<span id="icon"><i class="far fa-thumbs-up"></i></span>';
           html += '</button> ';
           html += data.likers.length + ' people liked this post';
@@ -180,6 +180,7 @@
             html += '<div class = "comments">';
             html += '<h3>POSTED COMMENTS</h3>';
             for (var i = 0; i < data.comments.length; ++i) {
+              html +=  '<span style = "color:red"> ' + data.personCommented[i] + ' </span> :    ' ;
               html += data.comments[i] + '<br >';
             }
 
@@ -193,6 +194,7 @@
           html += ' <textarea rows="2" name="commentBody" placeholder="Provide your comment" ></textarea> ';
           //onkeydown= "update(' + a + ');"
           html += '<input type = "hidden" value = ' + response.data[a].createdAt + ' name = "No">';
+          html += '<input type ="hidden" value = "' + window.user.username + '" name = "commented">';
           html += '<button type="submit">Post Comment</button></form>';
           //id = "txt'+ ctr + '";
           // html += ' <button  id="'+ ctr + '" onclick="display(this.id);">Post Comment</button></form> '  ;
