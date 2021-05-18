@@ -311,7 +311,7 @@ http.listen(3000, function () {
                 console.log(err);
               }
               else{
-              console.log("Success update of likers");
+              // console.log("Success update of likers");
                   // console.log(serial)
                   //   console.log(comment) ;
             }
@@ -338,7 +338,7 @@ http.listen(3000, function () {
                         console.log(err);
                       }
                       else{
-                      console.log("Success deletion of likers");
+                      // console.log("Success deletion of likers");
                           // console.log(serial)
                           //   console.log(comment) ;
                     }
@@ -351,6 +351,9 @@ http.listen(3000, function () {
         app.post("/comment", function(req, res){ //pushing comments to the database
           let comment = req.fields.commentBody ;//body of comment
           let serial = req.fields.No ; //createdAt field
+          let commented = req.fields.commented ;
+
+          let totalComment = commented + '  :  ' + comment ;
           serial = Number(serial) ;
 
           database.collection("posts").updateOne({
@@ -358,16 +361,15 @@ http.listen(3000, function () {
           },
           {$push:
             {
-              "comments": comment
+              "comments": comment,
+              "personCommented" : commented
             }} ,
             function (err) {
               if (err) {
                 console.log(err);
               }
               else{
-              console.log("Success update of comments");
-                  console.log(serial)
-                    console.log(comment) ;
+              // console.log("Success update of comments");
             }
           }
         );
@@ -396,40 +398,13 @@ http.listen(3000, function () {
                 } else {
                     if (req.files.image.size > 0 && req.files.image.type.includes("image")) {
                         image = "public/images/" + new Date().getTime() + "-" + req.files.image.name;
-                        console.log(image) ; 
                         fileSystem.rename(req.files.image.path, image, function (error) {
 
                         });
                     }
 
-                    // if (req.files.profileImage.size > 0 && req.files.profileImage.type.includes("image")) {
-                    //     if (user.profileImage != "") {
-                    //         fileSystem.unlink(user.profileImage, function (error) {
-                    //
-                    //         });
-                    //     }
-                    //     profileImage = "public/images/" + new Date().getTime() + "-" + req.files.profileImage.name;
-                    //     fileSystem.rename(req.files.profileImage.path, profileImage, function (error) {
-                    //
-                    //     });
-                    //     database.collection("users").updateOne({
-                    //         "accessToken": accessToken
-                    //     }, {
-                    //         $set: {
-                    //             "profileImage": profileImage
-                    //         }
-                    //     }, function (error, data) {
-                    //         res.json({
-                    //             "status": "status",
-                    //             "message": "Profile Image has been updated.",
-                    //             data: mainURL + "/" + profileImage
-                    //
-                    //         });
-                    //     });
-
-
                     if (req.files.video.size > 0 && req.files.video.type.includes("video")) {
-                        videos = "public/videos/" + new Date().getTime() + "-" + req.files.video.name;
+                        video = "public/videos/" + new Date().getTime() + "-" + req.files.video.name ;
                         fileSystem.rename(req.files.video.path, video, function (error) {
 
                         });
@@ -442,6 +417,7 @@ http.listen(3000, function () {
                         "createdAt": createdAt,
                         "likers": [],
                         "comments": [],
+                        "personCommented": [],
                         "shares": [],
                         "user": {
                             "_id": user._id,
@@ -463,6 +439,7 @@ http.listen(3000, function () {
                                     "createdAt": createdAt,
                                     "likers": [],
                                     "comments": [],
+                                    "personCommented": [],
                                     "shares": []
                                 }
                             }
