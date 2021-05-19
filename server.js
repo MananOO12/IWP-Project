@@ -292,6 +292,70 @@ http.listen(3000, function () {
                 }
             });
         });
+
+        app.post("/like", function(req, res){ //likers to the database
+          let liked = req.fields.liked;//body of comment
+          let num = Number(req.fields.Num) ; //createdAt field
+          database.collection("posts").updateOne({
+            "createdAt": num
+          },
+          {$addToSet:
+            {
+              "likers": liked
+            }} ,
+            function (err) {
+              if (err) {
+                console.log(err);
+              }
+          }
+        );
+        res.redirect("/homepage") ;
+        });
+
+        app.post("/dislike", function(req, res){ //remove dislikers from the database
+          let liked = req.fields.liked;//body of comment
+          let num = Number(req.fields.Num) ; //createdAt field
+          database.collection("posts").updateOne({
+              "createdAt": num
+          },
+          {$pull:
+              {
+                "likers": liked
+              }} ,
+              function (err) {
+                if (err) {
+                  console.log(err);
+                }
+              }
+        );
+        res.redirect("/homepage") ;
+      });
+
+      app.post("/comment", function(req, res){ //pushing comments to the database
+        let comment = req.fields.commentBody ;//body of comment
+        let serial = req.fields.No ; //createdAt field
+        let commented = req.fields.commented ;
+        let totalComment = commented + '  :  ' + comment ;
+        serial = Number(serial) ;
+        database.collection("posts").updateOne({
+          "createdAt": serial
+        },
+        {$push:
+          {
+            "comments": totalComment,
+          }} ,
+          function (err) {
+            if (err) {
+              console.log(err);
+            }
+            else{
+          }
+        }
+      );
+      res.redirect("/homepage") ;
+      });
+
+
         app.get("/homepage", function (req, res) {
             res.render("homepage");
         });
@@ -475,7 +539,7 @@ http.listen(3000, function () {
                                 }, function (error, data) {
                                     res.json({
                                         "status": "success",
-                                        "message": "Freind Request has been successfully sent."
+                                        "message": "Friend Request has been successfully sent."
 
                                     });
                                 });
@@ -617,5 +681,3 @@ http.listen(3000, function () {
 
     });
 });
-
-
