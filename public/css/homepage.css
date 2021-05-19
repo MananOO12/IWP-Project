@@ -94,3 +94,12 @@
     top: -18px;
     width: 20px;
 }
+.comments{
+    color : blue ;
+    display : none; 
+  }
+  
+  .viewcommentsBtn{
+    background-color: #4d84e2;
+    color: white ;
+  }

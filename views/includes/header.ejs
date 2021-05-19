@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- bootstrap -->
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
@@ -14,9 +16,14 @@
 
 
 
+
     <link rel="stylesheet" href="/public/css/color.css">
+    <link rel="stylesheet" href="/public/css/profstyle.css">
     <link rel="stylesheet" href="/public/css/profile.css">
     <link rel="stylesheet" href="/public/css/navbar.css">
+    <!-- <link rel="stylesheet" href="/public/css/homepage.css"> -->
+
+
 
 
 
@@ -30,16 +37,25 @@
 
         <!-- nav bar -->
         <div class="wrapper">
-            <div class="navbar  navbar-expand-sm navbar-light bg-white" data-spy="affix" data-offset-top="197">
+            <div class="navbar  navbar-expand-sm navbar-light " data-spy="affix" data-offset-top="197">
                 <div class="logo">
                     <a href="/homepage">Chit-Chat</a>
                 </div>
 
                 <div class="search_box">
-
-                    <input type="text" class="input_search" placeholder="What are you looking for?">
-                    <div class="search_btn"><i class="fas fa-search"></i></div>
+                    <input type="type" class="input_search" placeholder="What are you looking for?">
+                    <button data-ripple type="button" onclick="onSearch(this);"
+                        style="background-color: #7ea7ec;border: none;">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </div>
+                <!-- <form onsubmit="return false">
+                         <button data-ripple type="button" onclick="onSearch(this);"
+                            style="background-color: #7ea7ec;border: none;">
+                            
+                        </button>
+                    </form> -->
+
                 <div class="top-area">
                     <ul class="main-menu" id="main-menu"></ul>
                     <ul class="setting-area"></ul>
@@ -50,6 +66,10 @@
         <script>
             var mainURL = "http://localhost:3000";
             var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            function onSearch(button) {
+                window.location.href = "/search/" + button.previousElementSibling.value;
+            }
             function showAddPost() {
                 if (localStorage.getItem("accessToken")) {
                     var html = "";

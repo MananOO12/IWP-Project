@@ -33,6 +33,16 @@
                             showAddPost();
                             showNewsfeed();
                         }
+                        if (typeof isSearchResults !== "undefined" && isSearchResults) {
+                            showSearchResults();
+
+                        }
+                        if (typeof isFriends !== "undefined" && isFriends) {
+                            showFriends();
+
+                        }
+
+
                     } else {
                         localStorage.removeItem("accesssToken");
                     }

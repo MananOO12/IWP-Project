@@ -396,6 +396,224 @@ http.listen(3000, function () {
                 }
             });
         });
+        app.get("/search/:query", function (req, res) {
+            var query = req.params.query;
+            res.render("search", {
+                "query": query
+
+            });
+
+
+        });
+        app.post("/search", function (req, res) {
+            var query = req.fields.query;
+            database.collection("users").find({
+                "username": {
+                    $regex: ".*" + query + ".*",
+                    $options: "i"
+                }
+            }).toArray(function (error, data) {
+                res.json({
+                    "status": "success",
+                    "message": "Record has been fetched",
+                    "data": data
+                });
+            });
+        });
+        app.post("/sendFriendRequest", function (req, res) {
+            var accessToken = req.fields.accessToken;
+            var _id = req.fields._id;
+            database.collection("users").findOne({
+                "accessToken": accessToken,
+
+            }, function (error, user) {
+                if (user == null) {
+                    res.json({
+                        "status": "error",
+                        "message": "Try to login again."
+                    });
+                } else {
+                    var me = user;
+                    database.collection("users").findOne({
+                        "_id": ObjectId(_id)
+                    }, function (error, user) {
+                        if (user == null) {
+                            res.json({
+                                "status": "error",
+                                "message": "No such user exist"
+                            });
+                        } else {
+                            database.collection("users").updateOne({
+                                "_id": ObjectId(_id)
+
+                            }, {
+                                $push: {
+                                    "friends": {
+                                        "_id": me._id,
+                                        "username": me.username,
+                                        "profileImage": me.profileImage,
+                                        "status": "pending",
+                                        "sentByMe": false,
+                                        "inbox": []
+                                    }
+                                }
+                            }, function (error, data) {
+                                database.collection("users").updateOne({
+                                    "_id": me._id
+                                }, {
+                                    $push: {
+                                        "friends": {
+                                            "_id": user._id,
+                                            "username": user.username,
+                                            "profileImage": user.profileImage,
+                                            "status": "pending",
+                                            "sentByMe": true,
+                                            "inbox": []
+                                        }
+                                    }
+
+                                }, function (error, data) {
+                                    res.json({
+                                        "status": "success",
+                                        "message": "Freind Request has been successfully sent."
+
+                                    });
+                                });
+                            });
+                        }
+                    });
+                }
+
+            });
+        });
+        app.get("/friends", function (req, res) {
+            res.render("friends");
+        });
+        app.post("/acceptFriendRequest", function (req, res) {
+            var accessToken = req.fields.accessToken;
+            var _id = req.fields._id;
+            database.collection("users").findOne({
+                "accessToken": accessToken
+            }, function (error, user) {
+                if (user == null) {
+                    res.json({
+                        "status": "error",
+                        "message": "Try to login again."
+                    });
+                } else {
+                    var me = user;
+                    database.collection("users").findOne({
+                        "_id": ObjectId(_id)
+                    }, function (error, user) {
+                        if (user == null) {
+                            res.json({
+                                "status": "error",
+                                "message": "User does not exist."
+                            });
+                        } else {
+                            database.collection("users").updateOne({
+                                "_id": ObjectId(_id)
+                            }, {
+                                $push: {
+                                    "notifications": {
+                                        "_id": ObjectId(),
+                                        "type": "friend_request_accepted",
+                                        "content": me.username + "accepted yur firend request.",
+                                        "profileImage": me.profileImage,
+                                        "createdAt": new Date().getTime()
+
+                                    }
+                                }
+                            });
+                            database.collection("users").updateOne({
+                                $and: [{
+                                    "_id": ObjectId(_id)
+                                }, {
+                                    "friends._id": me._id
+
+                                }]
+                            }, {
+                                $set: {
+                                    "friends.$.status": "Accepted"
+                                }
+                            }, function (eror, data) {
+                                database.collection("users").updateOne({
+                                    $and: [{
+                                        "_id": me._id
+                                    }, {
+                                        "friends._id": user._id
+                                    }]
+                                }, {
+                                    $set: {
+                                        "friends.$.status": "Accepted"
+                                    }
+                                }, function (error, data) {
+                                    res.json({
+                                        "status": "success",
+                                        "message": "Friend Request has been accepted."
+                                    });
+                                });
+                            });
+
+                        }
+                    });
+
+                }
+            });
+        });
+        app.post("/unfriend", function (req, res) {
+            var accessToken = req.fields.accessToken;
+            var _id = req.fields._id;
+            database.collection("users").findOne({
+                "accessToken": accessToken
+            }, function (error, user) {
+                if (user == null) {
+                    res.json({
+                        "status": "error",
+                        "message": "Try to login again."
+                    });
+                } else {
+                    var me = user;
+                    database.collection("users").findOne({
+                        "_id": ObjectId(_id)
+                    }, function (error, user) {
+                        if (user == null) {
+                            res.json({
+                                "status": "error",
+                                "message": "User does Not exist."
+                            })
+                        } else {
+                            database.collection("users").updateOne({
+                                "_id": ObjectId(_id)
+                            }, {
+                                $pull: {
+                                    "friends": {
+                                        "_id": me._id
+                                    }
+                                }
+                            }, function (error, data) {
+                                database.collection("users").updateOne({
+                                    "_id": me._id
+                                }, {
+                                    $pull: {
+                                        "friends": {
+                                            "_id": user._id
+                                        }
+                                    }
+                                }, function (error, data) {
+                                    res.json({
+                                        "status": "success",
+                                        "message": "Friend Request has been rejected."
+                                    });
+                                });
+                            });
+                        }
+                    });
+                }
+
+            });
+        });
+
 
     });
 });
