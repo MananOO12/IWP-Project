@@ -1,0 +1,158 @@
+.fileContainer {
+  color: #d8d8d8;
+  font-size: 11px;
+  margin: 0 0 0 5px;
+  position: relative;
+  text-transform: capitalize;
+}
+
+.fileContainer [type=file] {
+  cursor: pointer;
+  display: block;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  position: absolute;
+  right: 0px;
+  text-align: right;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.edit-phto .fileContainer [type="file"] {
+  height: 35px;
+  top: -11px;
+  width: 126px;
+}
+
+.central-meta {
+  background: #fdfdfd none repeat scroll 0 0;
+  border: 1px solid #ede9e9;
+  border-radius: 20px;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px 25px;
+  padding-bottom: 18px;
+}
+
+.central-meta button.btn-view {
+  background: #f1f1f1;
+}
+
+.new-postbox {
+  display: inline-block;
+  width: 100%;
+}
+
+.new-postbox>figure {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: top;
+  width: 10.4%;
+}
+
+.new-postbox>figure {
+  float: left;
+}
+
+.newpst-input {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: top;
+  width: 85.5%;
+}
+
+.newpst-input>form {
+  display: inline-block;
+  width: 100%;
+}
+
+.newpst-input textarea {
+  /* position: absolute; */
+  /* left: 20px; */
+  width: 100%;
+  border-radius: 16px;
+  border-bottom:0;
+}
+
+.attachments {
+  /* position: relative; */
+  border: 1px solid #eee;
+  display: block;
+  /* padding: 10px; */
+  text-align: right;
+  border-top: 0;
+  background: #fff;
+  border-radius: 16px;
+}
+
+.attachments>ul {
+  list-style: outside none none;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.attachments li {
+  display: inline-block;
+  margin-left: 5px;
+}
+
+.attachments .fileContainer [type="file"] {
+  right: 6px;
+  top: -18px;
+  width: 20px;
+}
+
+.comments {
+  color: #1753b9;
+  display: none;
+  margin-bottom: 10px
+}
+
+h3.comments {
+  color: #1753b9;
+  font-size: 20px;
+}
+
+.viewcommentsBtn {
+  background-color: #4d84e2;
+  color: white;
+  border: none;
+  padding: 5px;
+  margin-top: 8px;
+}
+
+.common-btn{
+    border-radius: 3px;
+}
+
+.post-content {
+  color: #0a0a0a;
+  font-size: 16px;
+  margin-top: -12px;
+}
+
+.like-counter {
+  color: #736e6e;
+  font-size: 12px;
+}
+
+.user-pic {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  color: #e7cb5c;
+  border: 4px solid;
+}
+
+.user-name-post{
+  position: relative;
+  left: 60px;
+  top: -62px;
+}
+
+.post-like{
+    margin-top: -10px;
+}
