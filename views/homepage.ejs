@@ -74,6 +74,34 @@
                 return false;
 
             }
+
+
+            function change(x) {//change colour of like button
+              if (document.getElementById(x).style.backgroundColor != "blue") {
+                document.getElementById(x).style.backgroundColor = "blue";
+              } else {
+                document.getElementById(x).style.backgroundColor = "";
+              }
+            }
+
+            //change colour of dislike button
+            function change1(y) {
+              if (document.getElementById(y).style.backgroundColor != "red") {
+                document.getElementById(y).style.backgroundColor = "red";
+              } else {
+                document.getElementById(y).style.backgroundColor = "";
+              }
+            }
+
+            function toggleComments(z){  //toggle between display and hide of post comments
+              var d = document.getElementById("cmt" + z);
+              if (d.style.display === "none") {
+                d.style.display = "block";
+              } else {
+                d.style.display = "none";
+              }
+            }
+
             function showNewsfeed() {
                 var ajax = new XMLHttpRequest();
                 ajax.open("POST", "/getNewsfeed", true);
@@ -83,6 +111,8 @@
                         var html = "";
                         for (var a = 0; a < response.data.length; a++) {
                             var data = response.data[a];
+                            var b = a + 10000 ; //index for view comments
+                            var ctr = 10000 - a; //for index of dislike button
                             html += '<div class="central-meta item">';
                             html += '<div class="user-post">';
                             html += '<div class="friend-info">';
@@ -107,6 +137,25 @@
                             html += data.caption;
                             html += '</p>';
                             html += '</div>';
+
+                            //like section
+                            html += '<div>';
+                            html += '<form method = "post" action = "/like">';
+                            html += '<button formaction = "/dislike" onclick = "change1(this.id);" id = "' + (ctr) + '">';
+                            html += '<span id="icon"><i class="far fa-thumbs-down"></i></span>';
+                            html += '</button>';
+                            html += '&nbsp;&nbsp';
+                            html += '<button onclick = "change(this.id);" id = "' + a + '">';
+                            html += '<input type = "hidden" value = ' + response.data[a].createdAt + ' name = "Num">';
+                            html += '<input type ="hidden" value = "' + window.user.username + '" name = "liked">';
+                            html += '<span id="icon"><i class="far fa-thumbs-up"></i></span>';
+                            html += '</button> ';
+                            html += data.likers.length + ' people liked this post';
+                            html += '</form>';
+                            html += '</div>';
+                            html += '<br ><br >';
+                          //end of like section
+
                             if (data.image != "") {
                                 html += '<img src="' + mainURL + "/" + data.image + '">';
 
@@ -116,16 +165,33 @@
 
                             }
                             html += '</div>';
+
+                            html += '<button type="button" class = "viewcommentsBtn" id = "' + b + '" onclick = "toggleComments(this.id);">View Comments</button>';
+                            //posted comments displayed only if atleast 1 comment has been posted
+                            if (data.comments.length > 0) {
+                              html += '<div class = "comments" id ="cmt' + b + '" >';
+                              html += '<h3>POSTED COMMENTS</h3>';
+                              for (var i = 0; i < data.comments.length; ++i) {
+                                html += data.comments[i] + '<br >';
+                              }
+                              html += '</div>';
+                            }
+                            html += '<br><br>';
+
+                            //comments
+                            html += '<div>';
+                            html += '<form  method = "post" action = "/comment" >';
+                            html += ' <textarea rows="2" name="commentBody" placeholder="Provide your comment" ></textarea> ';
+                            html += '<input type = "hidden" value = ' + response.data[a].createdAt + ' name = "No">';
+                            html += '<input type ="hidden" value = "' + window.user.username + '" name = "commented">';
+                            html += '<button type="submit">Post Comment</button></form>';
+                            html += '</div>';
+                            //comments end
+
                             html += '</div>';
                             html += '</div>';
                             html += '</div>';
-
-
-
-
-
-
-                        }
+                      }
                         document.getElementById("newsfeed").innerHTML = html;
 
                     }

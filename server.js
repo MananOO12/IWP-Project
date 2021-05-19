@@ -181,7 +181,8 @@ http.listen(3000, function () {
 
                             });
                         }
-                        coverPhoto = "public/images" + new Date().getTime() + "-" + req.files.coverPhoto.name;
+                        // coverPhoto = "public/images" + new Date().getTime() + "-" + req.files.coverPhoto.name;
+                        coverPhoto = "public/images" + req.files.coverPhoto.name;
                         fileSystem.rename(
                             req.files.coverPhoto.path,
                             coverPhoto, function (error) {
@@ -231,7 +232,8 @@ http.listen(3000, function () {
 
                             });
                         }
-                        profileImage = "public/images/" + new Date().getTime() + "-" + req.files.profileImage.name;
+                        // profileImage = "public/images/" + new Date().getTime() + "-" + req.files.profileImage.name;
+                        profileImage = "public/images/" + req.files.profileImage.name;
                         fileSystem.rename(req.files.profileImage.path, profileImage, function (error) {
 
                         });
@@ -292,6 +294,76 @@ http.listen(3000, function () {
                 }
             });
         });
+
+        app.post("/like", function (req, res) { //likers to the database
+            let liked = req.fields.liked;//body of comment
+            let num = Number(req.fields.Num); //createdAt field
+            database.collection("posts").updateOne({
+                "createdAt": num
+            },
+                {
+                    $addToSet:
+                    {
+                        "likers": liked
+                    }
+                },
+                function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                }
+            );
+            res.redirect("/homepage");
+        });
+
+        app.post("/dislike", function (req, res) { //remove dislikers from the database
+            let liked = req.fields.liked;//body of comment
+            let num = Number(req.fields.Num); //createdAt field
+            database.collection("posts").updateOne({
+                "createdAt": num
+            },
+                {
+                    $pull:
+                    {
+                        "likers": liked
+                    }
+                },
+                function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                }
+            );
+            res.redirect("/homepage");
+        });
+
+        app.post("/comment", function (req, res) { //pushing comments to the database
+            let comment = req.fields.commentBody;//body of comment
+            let serial = req.fields.No; //createdAt field
+            let commented = req.fields.commented;
+            let totalComment = commented + '  :  ' + comment;
+            serial = Number(serial);
+            database.collection("posts").updateOne({
+                "createdAt": serial
+            },
+                {
+                    $push:
+                    {
+                        "comments": totalComment,
+                    }
+                },
+                function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                    }
+                }
+            );
+            res.redirect("/homepage");
+        });
+
+
         app.get("/homepage", function (req, res) {
             res.render("homepage");
         });
@@ -312,14 +384,26 @@ http.listen(3000, function () {
                         "message": "User has been logged out.Please Log in again."
                     });
                 } else {
+                    // if (req.files.image.size > 0 && req.files.image.type.includes("image")) {
+                    //     image = "public/images/" + new Date().getTime() + "-" + req.files.image.name;
+                    //     fileSystem.rename(req.files.image.path, image, function (error) {
+
+                    //     });
+                    // }
                     if (req.files.image.size > 0 && req.files.image.type.includes("image")) {
-                        image = "public/images/" + new Date().getTime() + "-" + req.files.image.name;
+                        image = "public/images/" + req.files.image.name;
                         fileSystem.rename(req.files.image.path, image, function (error) {
 
                         });
                     }
+                    // if (req.files.video.size > 0 && req.files.video.type.includes("video")) {
+                    //     image = "public/videos/" + new Date().getTime() + "-" + req.files.video.name;
+                    //     fileSystem.rename(req.files.video.path, video, function (error) {
+
+                    //     });
+                    // }
                     if (req.files.video.size > 0 && req.files.video.type.includes("video")) {
-                        image = "public/videos/" + new Date().getTime() + "-" + req.files.video.name;
+                        image = "public/videos/" + req.files.video.name;
                         fileSystem.rename(req.files.video.path, video, function (error) {
 
                         });
@@ -475,7 +559,7 @@ http.listen(3000, function () {
                                 }, function (error, data) {
                                     res.json({
                                         "status": "success",
-                                        "message": "Freind Request has been successfully sent."
+                                        "message": "Friend Request has been successfully sent."
 
                                     });
                                 });
@@ -617,5 +701,3 @@ http.listen(3000, function () {
 
     });
 });
-
-
