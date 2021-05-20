@@ -13,6 +13,7 @@ var bcrypt = require('bcrypt');
 var fileSystem = require('fs');
 
 var jwt = require('jsonwebtoken');
+const { json } = require('express');
 var accessTokenSecret = "myAccessTokenSecret1234567890";
 
 app.use("/public", express.static(__dirname + "/public"));
@@ -692,9 +693,105 @@ http.listen(3000, function () {
                                 });
                             });
                         }
+
                     });
                 }
 
+            });
+        });
+        app.get("/inbox", function (req, res) {
+            res.render("inbox");
+        });
+        app.post("/getFriendsChat", function (req, res) {
+            var accessToken = req.fields.accessToken;
+            var _id = req.fields._id;
+            database.collection("users").findOne({
+                "accessToken": accessToken
+            }, function (error, user) {
+                if (user == null) {
+                    res.json.parse({
+                        "status": "error",
+                        "message": "Try to login again."
+                    })
+                } else {
+                    var index = user.friends.findIndex(function (friend) {
+                        return friend._id == _id
+                    });
+                    var inbox = user.friends[index].inbox;
+                    res.json({
+                        "status": "success",
+                        "message": "Data has been succcessfully fetched.",
+                        "data": inbox
+                    });
+                }
+            });
+
+
+        });
+        app.post("/sendMessage", function (req, res) {
+            var accessToken = req.fields.accessToken;
+            var _id = req.fields._id;
+            var message = req.fields.message;
+            database.collection("users").findOne({
+                "accessToken": accessToken
+            }, function (error, user) {
+                if (user == null) {
+                    res.json({
+                        "status": "error",
+                        "message": "Try to login again."
+
+                    });
+                } else {
+                    var me = user;
+                    database.collection("users").findOne({
+                        "_id": ObjectId(_id)
+                    }, function (error, user) {
+                        if (user == null) {
+                            res.json({
+                                "status": "error",
+                                "message": "No such user."
+                            });
+                        } else {
+                            database.collection("users").updateOne({
+                                $and: [{
+                                    "_id": ObjectId(_id)
+                                }, {
+                                    "friends._id": me._id
+                                }]
+                            }, {
+                                $push: {
+                                    "friends.$.inbox": {
+                                        "_id": ObjectId(),
+                                        "message": message,
+                                        "from": me._id
+                                    }
+                                }
+                            }, function (error, data) {
+                                database.collection("users").updateOne({
+                                    $and: [{
+                                        "_id": me._id
+                                    }, {
+                                        "friends._id": user._id
+                                    }]
+                                }, {
+                                    $push: {
+                                        "friends.$.inbox": {
+                                            "_id": ObjectId(),
+                                            "message": message,
+                                            "from": me._id
+                                        }
+                                    }
+                                }, function (error, data) {
+                                    res.json({
+                                        "status": "success",
+                                        "message": "Message has been sent."
+                                    });
+                                });
+                            });
+                        }
+                    });
+
+                }
             });
         });
 
