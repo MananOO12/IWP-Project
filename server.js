@@ -782,6 +782,10 @@ http.listen(3000, function () {
                                         }
                                     }
                                 }, function (error, data) {
+                                    socketIO.to(users[user.id]).emit("messageReceived", {
+                                        "message": message,
+                                        "from": me._id
+                                    });
                                     res.json({
                                         "status": "success",
                                         "message": "Message has been sent."
@@ -794,6 +798,27 @@ http.listen(3000, function () {
                 }
             });
         });
+        app.post("/connectSocket", function (req, res) {
+            var accessToken = req.fields.accessToken;
+            database.collection("user").findOne({
+                "accessToken": accessToken
+            }, function (error, user) {
+                if (user == null) {
+                    res.json({
+                        "status": "error",
+                        "message": "Try to login again"
+                    });
+                } else {
+                    users[user._id] = socketID;
+                    res.json({
+                        "status": "status",
+                        "message": "Socket has been connected"
+                    });
+                }
+
+            });
+        });
+
 
 
     });
