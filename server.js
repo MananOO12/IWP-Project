@@ -712,7 +712,7 @@ http.listen(3000, function () {
                     res.json.parse({
                         "status": "error",
                         "message": "Try to login again."
-                    })
+                    });
                 } else {
                     var index = user.friends.findIndex(function (friend) {
                         return friend._id == _id

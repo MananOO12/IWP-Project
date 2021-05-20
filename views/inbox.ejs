@@ -74,15 +74,20 @@
                 }
                 function friendSelected(self) {
                     var _id = self.getAttribute("data-id");
-                    var index = friends.findIndex(function (friend) {
-                        return friend._id = _id;
+
+                    // alert(window.user.friend[1]);
+                    var index = friends.findIndex(function (friends) {
+                        return friends._id == _id
 
                     });
+                    // alert(index);
                     selectedFriend = friends[index];
+
                     var html = "";
-                    var html = "<figure>";
+                    html += '<figure>';
+                    // html += '<img src="' + mainURL + '/' + selectedFriend.profileImage + '">';
                     html += '<img src="' + mainURL + '/' + selectedFriend.profileImage + '">';
-                    html = "</figure>";
+                    html += '</figure>';
                     html += '<span>' + selectedFriend.username + '</span>';
                     document.getElementById("conversation-head").innerHTML = html;
                     var ajax = new XMLHttpRequest();
@@ -91,7 +96,7 @@
                         if (this.status == 200 && this.readyState == 4) {
                             var response = JSON.parse(this.responseText);
                             var html = "";
-                            for (var a; a < response.data.length; a++) {
+                            for (var a = 0; a < response.data.length; a++) {
                                 var inbox = response.data[a];
                                 if (inbox.from == window.user._id) {
                                     html += '<li class="me">';
