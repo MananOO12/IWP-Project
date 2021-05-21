@@ -130,6 +130,8 @@
             return false;
 
         }
+
+
     </script>
     <section style="z-index: 2;">
         <div class="gap gray bg">
@@ -173,6 +175,7 @@
                                         <input type="text" class="country" name="country" style="width:400px ;" />
 
                                     </div>
+
                                     <br><br>
 
                                     <div class="form-group">
@@ -185,7 +188,40 @@
                                     <button type="submit" name="submit">
                                         <span>Save</span>
                                     </button>
+
+                                    <!-- //button for change password -->
+                                    <button type="button" style = "position: relative ; right = 3500px ; "onclick="showChangePassword(e);">
+                                      Change Password</button>
+
+                                    <script>
+                                      function showChangePassword(e){
+                                          var d = document.getElementById("e");
+                                          if (d.style.display === "none") {
+                                            d.style.display = "block";
+                                          } else {
+                                            d.style.display = "none";
+                                          }
+                                        }
+                                    </script>
                                 </form>
+
+                                <!-- //form for change password -->
+                                <div id = "e" style="display:none; position: relative ; top: 10px;">
+                                  <form action="/changePassword" method="post" class = "form-group">
+                                      <label for="newPwd">New Password: </label>
+                                      <input type="password" name = "newPwd">
+                                      <input type = "hidden"    name = "us" id = "i" >
+                                      <br><br>
+                                      <button type="submit"  onclick = "nameVal();">Confirm change password</button>
+                                  </form>
+                                </div>
+
+                                <script>
+                                  function nameVal(){
+                                    var j = window.user.username ;
+                                    document.getElementById("i").value = j ; 
+                                  }
+                                </script>
 
                             </div>
 
