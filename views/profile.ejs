@@ -1,0 +1,47 @@
+<%- include ("includes/header")%>
+<%- include ("includes/externalcss")%>
+
+<% userDetails.forEach(function(user){ %>
+<div class="DIV1">
+  <aside class="sidebar static">
+    <div class="widget">
+      <h4 class="widget-title">Quickies</h4>
+      <ul class="naves">
+        <li>
+          <i class="fas fa-user-friends"></i>
+          <a href="/friends" style="color:#5995fd;">Friends</a>
+        </li>
+        <% for(var i = 0 ; i < user.friends.length ; ++i){ %>
+        <li>
+          <div class = "user-avatar">
+          <figure>
+          <img class="user-pic" src="' + mainURL + " /" + <%=user.friends[i].profileImage %> + '">
+          </figure>
+          </div>
+          <%= user.friends[i].username %>
+        </li>
+
+        <% } %>
+      </ul>
+    </div>
+  </aside>
+</div>
+<div class="DIV2">
+  <h1>HI</h1>
+  <h1><%= user.username %></h1>
+  <div>
+  <figure>
+    <img  src="' + mainURL + " /" + <%=user.profileImage %> + '">
+    </figure>
+  </div>
+  <figure>
+    <img  src="' + mainURL + " /" + <%=user.coverPhoto %> + '">
+    </figure>
+    <h1>POSTS OF <%=user.username%></h1>
+    <% postDetails.forEach(function(post){%>
+      <h2><%= post.caption %></h2>
+    <%});%>
+  </div>
+  <% }); %>
+
+<%- include ("includes/footer") %>
