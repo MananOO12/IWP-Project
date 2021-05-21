@@ -23,6 +23,7 @@ var socketIO = require("socket.io")(http);
 var SocketID = "";
 var users = [];
 
+var assert = require('assert');
 var mainURL = "http://localhost:3000";
 
 socketIO.on("connection", function (socket) {
@@ -296,6 +297,17 @@ http.listen(3000, function () {
             });
         });
 
+        //new part by ateeth
+        app.post("/user" , function(req,res){ //redirect users to profile page
+            var userName = req.fields.uName ;
+            database.collection("users").find({username: userName}).toArray(function(err,user_list){
+              database.collection("posts").find({}).toArray(function(err,post_list){
+                assert.equal(err,null) ;
+                res.render("profile",{userDetails: user_list , postDetails: post_list}) ;
+              }) ;
+            });
+        }) ;
+        
         app.post("/like", function (req, res) { //likers to the database
             let liked = req.fields.liked;//body of comment
             let num = Number(req.fields.Num); //createdAt field
