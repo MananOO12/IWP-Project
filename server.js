@@ -99,6 +99,7 @@ http.listen(3000, function () {
         app.post("/login", function (req, res) {
             var username = req.fields.username;
             var pwd = req.fields.pwd;
+              // res.redirect("/homepage") ;
             database.collection("users").findOne({
                 "username": username
             }, function (error, user) {
@@ -135,12 +136,31 @@ http.listen(3000, function () {
 
                 }
             });
-
-
         });
         app.get("/updateProfile", function (req, res) {
             res.render("updateProfile");
         });
+
+        //post method for change newPwd
+        app.post("/changePassword" , function(req,res){
+          let newPassword = req.fields.newPwd ;
+          let UserName = req.fields.us ;
+          database.collection("users").updateOne({
+              "username": UserName
+          }, {
+              $set: {
+                  "password": newPassword
+              }
+          }, function (error, data) {
+              if(error)
+              console.log(error) ;
+              else{
+                console.log("Success update password") ;
+              }
+          });
+          res.redirect("/updateProfile");
+        });
+
         app.post("/getUser", function (req, res) {
             var accessToken = req.fields.accessToken;
             database.collection("users").findOne({
@@ -307,7 +327,7 @@ http.listen(3000, function () {
               }) ;
             });
         }) ;
-        
+
         app.post("/like", function (req, res) { //likers to the database
             let liked = req.fields.liked;//body of comment
             let num = Number(req.fields.Num); //createdAt field
