@@ -142,9 +142,11 @@ http.listen(3000, function () {
         });
 
         //post method for change newPwd
-        app.post("/changePassword" , function(req,res){
+        app.get("/changePassword" , function(req,res){
           let newPassword = req.fields.newPwd ;
           let UserName = req.fields.us ;
+          console.log(newPassword) ;
+          console.log(UserName) ;
           database.collection("users").updateOne({
               "username": UserName
           }, {
@@ -321,7 +323,7 @@ http.listen(3000, function () {
         app.post("/user" , function(req,res){ //redirect users to profile page
             var userName = req.fields.uName ;
             database.collection("users").find({username: userName}).toArray(function(err,user_list){
-              database.collection("posts").find({}).toArray(function(err,post_list){
+              database.collection("posts").find({'user.username': userName}).toArray(function(err,post_list){
                 assert.equal(err,null) ;
                 res.render("profile",{userDetails: user_list , postDetails: post_list}) ;
               }) ;
