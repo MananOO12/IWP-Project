@@ -325,7 +325,7 @@ http.listen(3000, function () {
             database.collection("users").find({username: userName}).toArray(function(err,user_list){
               database.collection("posts").find({'user.username': userName}).toArray(function(err,post_list){
                 assert.equal(err,null) ;
-                res.render("profile",{userDetails: user_list , postDetails: post_list}) ;
+                res.render("profile",{userDetails: user_list , postDetails: post_list }) ;
               }) ;
             });
         }) ;
