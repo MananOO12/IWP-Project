@@ -1,47 +1,213 @@
 <%- include ("includes/header")%>
-<%- include ("includes/externalcss")%>
+    <%- include ("includes/externalcss")%>
+        <section>
+            <div class="gap gray-bg">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row" id="page-contents">
+                                <div class="col-md-3">
+                                    <%-include ("includes/l_sidebar")%>
 
-<% userDetails.forEach(function(user){ %>
-<div class="DIV1">
-  <aside class="sidebar static">
-    <div class="widget">
-      <h4 class="widget-title">Quickies</h4>
-      <ul class="naves">
-        <li>
-          <i class="fas fa-user-friends"></i>
-          <a href="/friends" style="color:#5995fd;">Friends</a>
-        </li>
-        <% for(var i = 0 ; i < user.friends.length ; ++i){ %>
-        <li>
-          <div class = "user-avatar">
-          <figure>
-          <img class="user-pic" src="' + mainURL + " /" + <%=user.friends[i].profileImage %> + '">
-          </figure>
-          </div>
-          <%= user.friends[i].username %>
-        </li>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="add-post-box"></div>
+                                    <div class="loadMore" id="newsfeed">
 
-        <% } %>
-      </ul>
-    </div>
-  </aside>
-</div>
-<div class="DIV2">
-  <h1>HI</h1>
-  <h1><%= user.username %></h1>
-  <div>
-  <figure>
-    <img  src="' + mainURL + " /" + <%=user.profileImage %> + '">
-    </figure>
-  </div>
-  <figure>
-    <img  src="' + mainURL + " /" + <%=user.coverPhoto %> + '">
-    </figure>
-    <h1>POSTS OF <%=user.username%></h1>
-    <% postDetails.forEach(function(post){%>
-      <h2><%= post.caption %></h2>
-    <%});%>
-  </div>
-  <% }); %>
+                                    </div>
+                                </div>
 
-<%- include ("includes/footer") %>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            var isHomePage = true;
+            function previewPostImage(self) {
+                var file = self.files;
+                if (file.length > 0) {
+                    var fileReader = new FileReader();
+                    fileReader.onload = function (event) {
+                        document.getElementById("post-img-preview").style.display = "";
+                        document.getElementById("post-img-preview").setAttribute("src", event.target.result);
+                    };
+                    fileReader.readAsDataURL(file[0]);
+                }
+            }
+            function previewPostVideo(self) {
+                var file = self.files;
+                if (file.length > 0) {
+                    var fileReader = new FileReader();
+                    fileReader.onload = function (event) {
+                        document.getElementById("post-video-preview").style.display = "";
+                        document.getElementById("post-video-preview").setAttribute("src", event.target.result);
+                    };
+                    fileReader.readAsDataURL(file[0]);
+                }
+            }
+            function doPost(form) {
+                var ajax = new XMLHttpRequest();
+                ajax.open("POST", "/addPost", true);
+                ajax.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var response = JSON.parse(this.responseText);
+                        alert(response.message);
+                        if (response.status = "success") {
+                            document.getElementById("form-add-post").querySelector("input[name= 'image']").value = "";
+                            document.getElementById("form-add-post").querySelector("input[name= 'video']").value = "";
+                            document.getElementById("form-add-post").querySelector("textarea[name='caption']").value = "";
+                            document.getElementById("post-img-preview").style.display = "none";
+                            document.getElementById("post-video-preview").style.display = "none";
+                            showNewsfeed();
+                        }
+                    }
+
+
+                };
+
+                var formData = new FormData(form);
+                formData.append("accessToken", localStorage.getItem("accessToken"));
+                ajax.send(formData);
+                return false;
+
+            }
+
+
+            function change(x) {//change colour of like button
+              if (document.getElementById(x).style.backgroundColor != "blue") {
+                document.getElementById(x).style.backgroundColor = "blue";
+              } else {
+                document.getElementById(x).style.backgroundColor = "";
+              }
+            }
+
+            //change colour of dislike button
+            function change1(y) {
+              if (document.getElementById(y).style.backgroundColor != "red") {
+                document.getElementById(y).style.backgroundColor = "red";
+              } else {
+                document.getElementById(y).style.backgroundColor = "";
+              }
+            }
+
+            function toggleComments(z){  //toggle between display and hide of post comments
+              var d = document.getElementById("cmt" + z);
+              if (d.style.display === "none") {
+                d.style.display = "block";
+              } else {
+                d.style.display = "none";
+              }
+            }
+
+            function showNewsfeed() {
+                var ajax = new XMLHttpRequest();
+                ajax.open("POST", "/getNewsfeed", true);
+                ajax.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var response = JSON.parse(this.responseText);
+                        var html = "";
+                        for (var a = 0; a < response.data.length; a++) {
+                            var data = response.data[a];
+                            var b = a + 10000 ; //index for view comments
+                            var ctr = 10000 - a; //for index of dislike button
+                            var f = 100000 + a ; //index for user name beside post redirecting
+                            html += '<div class="central-meta item">';
+                            html += '<div class="user-post">';
+                            html += '<div class="friend-info">';
+                            html += '<figures>';
+                            html += '<img src="' + mainURL + "/" + data.user.profileImage +
+                                '" style ="width:45px;height:45px;object-fit:cover;">';
+                            html += '</figure>';
+                            html += '<div class = "friend-name">';
+                            html += '<ins>';
+
+                            //redirecting the user
+                            html += '<form action = "/user" method = "post">' ;
+                            html += '<button style = "background-color:white ; position : relative ; left : 2px ; " id = "' + f + '">';
+                            html += '<input type = "hidden" value = "' + data.user.username + '" name = "uName" >' ;
+                            html += '<span style = "color:#5995fd ; font-size: 25px ;   ">'
+                            html +=  data.user.username ;
+                            html += '</span>';
+                            html += '</button>';
+                            html +=  '</form>';
+
+                            html += '</ins>';
+                            var createdAt = new Date(data.createdAt);
+                            var date = createdAt.getDate() + "";
+                            date = date.padStart(2, "0") + " " + months[createdAt.getMonth()] + "," + createdAt.getFullYear();
+                            html += '<span>Uploaded on: ' + date + '</span>';
+                            html += '</div>';
+                            html += '<div class="post-meta">';
+                            html += '<div class="description">';
+                            html += '<p>';
+                            html += data.caption;
+                            html += '</p>';
+                            html += '</div>';
+
+                            //like section
+                            html += '<div>';
+                            html += '<form method = "post" action = "/like">';
+                            html += '<button formaction = "/dislike" onclick = "change1(this.id);" id = "' + (ctr) + '">';
+                            html += '<span id="icon"><i class="far fa-thumbs-down"></i></span>';
+                            html += '</button>';
+                            html += '&nbsp;&nbsp';
+                            html += '<button onclick = "change(this.id);" id = "' + a + '">';
+                            html += '<input type = "hidden" value = ' + response.data[a].createdAt + ' name = "Num">';
+                            html += '<input type ="hidden" value = "' + window.user.username + '" name = "liked">';
+                            html += '<span id="icon"><i class="far fa-thumbs-up"></i></span>';
+                            html += '</button> ';
+                            html += data.likers.length + ' people liked this post';
+                            html += '</form>';
+                            html += '</div>';
+                            html += '<br ><br >';
+                          //end of like section
+
+                            if (data.image != "") {
+                                html += '<img src="' + mainURL + "/" + data.image + '">';
+
+                            }
+                            if (data.video != "") {
+                                html += '<video style="height:359px ; width:100%;" controls src="' + mainURL + "/" + data.video + '"></video>';
+
+                            }
+                            html += '</div>';
+
+                            html += '<button type="button" class = "viewcommentsBtn" id = "' + b + '" onclick = "toggleComments(this.id);">View Comments</button>';
+                            //posted comments displayed only if atleast 1 comment has been posted
+                            if (data.comments.length > 0) {
+                              html += '<div class = "comments" id ="cmt' + b + '" >';
+                              html += '<h3>POSTED COMMENTS</h3>';
+                              for (var i = 0; i < data.comments.length; ++i) {
+                                html += data.comments[i] + '<br >';
+                              }
+                              html += '</div>';
+                            }
+                            html += '<br><br>';
+
+                            //comments
+                            html += '<div>';
+                            html += '<form  method = "post" action = "/comment" >';
+                            html += ' <textarea rows="2" name="commentBody" placeholder="Provide your comment" ></textarea> ';
+                            html += '<input type = "hidden" value = ' + response.data[a].createdAt + ' name = "No">';
+                            html += '<input type ="hidden" value = "' + window.user.username + '" name = "commented">';
+                            html += '<button type="submit">Post Comment</button></form>';
+                            html += '</div>';
+                            //comments end
+
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
+                      }
+                        document.getElementById("newsfeed").innerHTML = html;
+
+                    }
+                };
+                var formData = new FormData();
+                formData.append("accessToken", localStorage.getItem("accessToken"));
+                ajax.send(formData);
+            }
+        </script>
+        <%- include ("includes/footer")%>
