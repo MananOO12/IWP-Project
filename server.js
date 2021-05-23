@@ -185,7 +185,7 @@ http.listen(3000, function () {
         });
         res.redirect("/updateProfile");
       });
-        
+
         app.post("/getUser", function (req, res) {
             var accessToken = req.fields.accessToken;
             database.collection("users").findOne({
