@@ -18,9 +18,9 @@
                                                 <h5 class="f-title">
                                                     <i class="fas fa-bell"></i>
                                                     All Messages
-                                                    <span class="more-options">
+                                                    <!-- <span class="more-options">
                                                         <i class="fa fa-ellipsis-h"></i>
-                                                    </span>
+                                                    </span> -->
                                                 </h5>
                                                 <div class="message-box">
                                                     <ul class="peoples" id="friends"></ul>
@@ -28,7 +28,7 @@
                                                         <div class="conversation-head" id="conversation-head"></div>
                                                         <ul class="chatting-area" id="chatting-area"></ul>
                                                         <div class="message-text-container">
-                                                            <form method="POST" onsubmit="return doSendMessage(this);">
+                                                            <form method="post" onsubmit="return doSendMessage(this);">
                                                                 <textarea name="message"></textarea>
                                                                 <button title="send">
                                                                     <i class="fa fa-paper-plane"></i>
@@ -47,6 +47,7 @@
                 </div>
             </section>
             <script>
+
                 var isFriends = true;
                 var selectedFriend = null;
                 var friends = [];
@@ -77,8 +78,8 @@
                     var _id = self.getAttribute("data-id");
 
                     // alert(window.user.friend[1]);
-                    var index = friends.findIndex(function (friends) {
-                        return friends._id == _id
+                    var index = friends.findIndex(function (friend) {
+                        return friend._id == _id
 
                     });
                     // alert(index);
@@ -136,33 +137,42 @@
                                 html += '<li class="me">';
                                 html += '<p>' + message + '</p>';
                                 html += '</li>';
-                                document.getElementById("chatting-area").innerHTML = html;
+                                document.getElementById("chatting-area").innerHTML += html;
                                 form.message.value = "";
                                 var objDiv = document.getElementById("chatting-area");
                                 objDiv.scrollTop = objDiv.scrollHeight;
 
                             }
                         }
-                    };
+                    }
                     var formData = new FormData(form);
                     formData.append("accessToken", localStorage.getItem("accessToken"));
                     formData.append("_id", selectedFriend._id);
+
                     ajax.send(formData);
+
                     return false;
                 }
                 function connectSocket() {
+
                     var ajax = new XMLHttpRequest();
                     ajax.open("POST", "/connectSocket", true);
                     ajax.onreadystatechange = function () {
                         if (this.status == 200 && this.readyState == 4) {
+
                             var response = JSON.parse(this.responseText);
+
+
                             socketIO.on("messageReceived", function (messageObj) {
+
+
                                 if (selectedFriend != null && messageObj.from == selectedFriend._id) {
                                     var html = "";
                                     html += '<li class="you">';
                                     html += '<p>' + messageObj.message + '</p>';
                                     html += '</li>';
-                                    document.getElementById("chatting-area").innerHTML = html;
+                                    document.getElementById("chatting-area").innerHTML += html;
+
                                     var objDiv = document.getElementById("chatting-area");
                                     objDiv.scrollTop = objDiv.scrollHeight;
 

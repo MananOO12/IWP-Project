@@ -13,20 +13,21 @@ var bcrypt = require('bcrypt');
 var fileSystem = require('fs');
 
 var jwt = require('jsonwebtoken');
-const { json } = require('express');
 var accessTokenSecret = "myAccessTokenSecret1234567890";
 
 app.use("/public", express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 
+
 var socketIO = require("socket.io")(http);
-var SocketID = "";
+var socketID = "";
 var users = [];
 
 var mainURL = "http://localhost:3000";
 
 socketIO.on("connection", function (socket) {
-    console.log("User Connected!");
+
+    console.log("User Connected!", socket.id);
     socketID = socket.id;
 });
 http.listen(3000, function () {
@@ -541,6 +542,7 @@ http.listen(3000, function () {
                                         "sentByMe": false,
                                         "inbox": []
                                     }
+
                                 }
                             }, function (error, data) {
                                 database.collection("users").updateOne({
@@ -555,6 +557,7 @@ http.listen(3000, function () {
                                             "sentByMe": true,
                                             "inbox": []
                                         }
+
                                     }
 
                                 }, function (error, data) {
@@ -603,7 +606,7 @@ http.listen(3000, function () {
                                     "notifications": {
                                         "_id": ObjectId(),
                                         "type": "friend_request_accepted",
-                                        "content": me.username + "accepted yur firend request.",
+                                        "content": me.username + "accepted your friend request.",
                                         "profileImage": me.profileImage,
                                         "createdAt": new Date().getTime()
 
@@ -782,7 +785,8 @@ http.listen(3000, function () {
                                         }
                                     }
                                 }, function (error, data) {
-                                    socketIO.to(users[user.id]).emit("messageReceived", {
+
+                                    socketIO.to(users[user._id]).emit("messageReceived", {
                                         "message": message,
                                         "from": me._id
                                     });
@@ -800,7 +804,7 @@ http.listen(3000, function () {
         });
         app.post("/connectSocket", function (req, res) {
             var accessToken = req.fields.accessToken;
-            database.collection("user").findOne({
+            database.collection("users").findOne({
                 "accessToken": accessToken
             }, function (error, user) {
                 if (user == null) {
@@ -810,6 +814,7 @@ http.listen(3000, function () {
                     });
                 } else {
                     users[user._id] = socketID;
+
                     res.json({
                         "status": "status",
                         "message": "Socket has been connected"
@@ -817,6 +822,9 @@ http.listen(3000, function () {
                 }
 
             });
+        });
+        app.get("/notifications", function (req, res) {
+            res.render("notifications");
         });
 
 
