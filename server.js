@@ -23,6 +23,7 @@ var socketIO = require("socket.io")(http);
 var socketID = "";
 var users = [];
 
+var assert = require('assert');
 var mainURL = "http://localhost:3000";
 
 socketIO.on("connection", function (socket) {
@@ -141,6 +142,29 @@ http.listen(3000, function () {
         app.get("/updateProfile", function (req, res) {
             res.render("updateProfile");
         });
+
+        //post method for change newPwd
+        app.get("/changePassword" , function(req,res){
+          let newPassword = req.fields.newPwd ;
+          let UserName = req.fields.us ;
+          console.log(newPassword) ;
+          console.log(UserName) ;
+          database.collection("users").updateOne({
+              "username": UserName
+          }, {
+              $set: {
+                  "password": newPassword
+              }
+          }, function (error, data) {
+              if(error)
+              console.log(error) ;
+              else{
+                console.log("Success update password") ;
+              }
+          });
+          res.redirect("/updateProfile");
+        });
+
         app.post("/getUser", function (req, res) {
             var accessToken = req.fields.accessToken;
             database.collection("users").findOne({
@@ -297,9 +321,35 @@ http.listen(3000, function () {
             });
         });
 
+        //new part by ateeth
+        app.post("/user" , function(req,res){ //redirect users to profile page
+            var userName = req.fields.uName ;
+            database.collection("users").find({username: userName}).toArray(function(err,user_list){
+              database.collection("posts").find({'user.username': userName}).toArray(function(err,post_list){
+                assert.equal(err,null) ;
+                res.render("profile",{userDetails: user_list , postDetails: post_list }) ;
+              }) ;
+            });
+        }) ;
+
+        app.get("/user/:userID" , function(req,res){ //redirect users to profile page from navbar
+            var userName = req.params.userID ;
+            database.collection("users").find({username: userName}).toArray(function(err,user_list){
+              database.collection("posts").find({'user.username': userName}).toArray(function(err,post_list){
+                assert.equal(err,null) ;
+                res.render("profile",{userDetails: user_list , postDetails: post_list }) ;
+              }) ;
+            });
+        }) ;
+
         app.post("/like", function (req, res) { //likers to the database
-            let liked = req.fields.liked;//body of comment
+            let liked = req.fields.liked;//liker name
             let num = Number(req.fields.Num); //createdAt field
+            let x = req.fields.personLiked ;
+            let likeImg = req.fields.likeImg ;
+            // console.log(x);
+            // console.log(liked) ;
+            // console.log(likeImg);
             database.collection("posts").updateOne({
                 "createdAt": num
             },
@@ -315,6 +365,19 @@ http.listen(3000, function () {
                     }
                 }
             );
+            database.collection("users").updateOne({
+                "username": x
+            }, {
+                $push: {
+                    "notifications": {
+                        "type": "liked_post",
+                        "content": liked + " liked your post.",
+                        "profileImage": likeImg,
+                        "createdAt": new Date().getTime()
+
+                    }
+                }
+            });
             res.redirect("/homepage");
         });
 
