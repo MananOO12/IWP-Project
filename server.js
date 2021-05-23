@@ -330,6 +330,16 @@ http.listen(3000, function () {
             });
         }) ;
 
+        app.get("/user/:userID" , function(req,res){ //redirect users to profile page from navbar
+            var userName = req.params.userID ;
+            database.collection("users").find({username: userName}).toArray(function(err,user_list){
+              database.collection("posts").find({'user.username': userName}).toArray(function(err,post_list){
+                assert.equal(err,null) ;
+                res.render("profile",{userDetails: user_list , postDetails: post_list }) ;
+              }) ;
+            });
+        }) ;
+
         app.post("/like", function (req, res) { //likers to the database
             let liked = req.fields.liked;//body of comment
             let num = Number(req.fields.Num); //createdAt field
