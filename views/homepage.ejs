@@ -113,6 +113,7 @@
                             var data = response.data[a];
                             var b = a + 10000 ; //index for view comments
                             var ctr = 10000 - a; //for index of dislike button
+                              var f = 100000 + a ; //index for user name beside post redirecting
                             html += '<div class="central-meta item">';
                             html += '<div class="user-post">';
                             html += '<div class="friend-info">';
@@ -122,10 +123,19 @@
                             html += '</figure>';
                             html += '<div class = "friend-name">';
                             html += '<ins>';
-                            html += '<a href="/user/' + data.user._id + '">';
-                            html += data.user.username;
-                            html += '</a>';
+
+                            //redirecting the user
+                            html += '<form action = "/user" method = "post">' ;
+                            html += '<button style = "background-color:white ; position : relative ; left : 2px ; " id = "' + f + '">';
+                            html += '<input type = "hidden" value = "' + data.user.username + '" name = "uName" >' ;
+                            html += '<span style = "color:#5995fd ; font-size: 25px ;   ">'
+                            html +=  data.user.username ;
+                            html += '</span>';
+                            html += '</button>';
+                            html +=  '</form>';
+
                             html += '</ins>';
+
                             var createdAt = new Date(data.createdAt);
                             var date = createdAt.getDate() + "";
                             date = date.padStart(2, "0") + " " + months[createdAt.getMonth()] + "," + createdAt.getFullYear();
@@ -148,6 +158,8 @@
                             html += '<button onclick = "change(this.id);" id = "' + a + '">';
                             html += '<input type = "hidden" value = ' + response.data[a].createdAt + ' name = "Num">';
                             html += '<input type ="hidden" value = "' + window.user.username + '" name = "liked">';
+                            html += '<input type ="hidden" value = "' + data.user.username + '" name = "personLiked">';
+                            html += '<input type = "hidden" value = "' + window.user.profileImage + '" name = "likeImg">' ;
                             html += '<span id="icon"><i class="far fa-thumbs-up"></i></span>';
                             html += '</button> ';
                             html += data.likers.length + ' people liked this post';
