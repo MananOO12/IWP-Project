@@ -165,6 +165,27 @@ http.listen(3000, function () {
           res.redirect("/updateProfile");
         });
 
+        app.post("/changePassword" , function(req,res){
+        let newPassword = req.fields.newPwd ;
+        let UserName = req.fields.us ;
+        console.log(newPassword) ;
+        console.log(UserName) ;
+        database.collection("users").updateOne({
+            "username": UserName
+        }, {
+            $set: {
+                "password": newPassword
+            }
+        }, function (error, data) {
+            if(error)
+            console.log(error) ;
+            else{
+              console.log("Success update password") ;
+            }
+        });
+        res.redirect("/updateProfile");
+      });
+        
         app.post("/getUser", function (req, res) {
             var accessToken = req.fields.accessToken;
             database.collection("users").findOne({
