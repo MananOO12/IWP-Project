@@ -442,3 +442,29 @@ input[type="file"]{
 .btn:hover{
     background-color: #4d84e2;
 }
+
+
+/* css for the profile page */
+
+.DIV1{
+  position : absolute ;
+  top: 100px ;
+  left:10px;
+}
+
+.DIV2{
+  position: absolute;
+	top : 100px ;
+  left: 400px;
+}
+
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:  #4d84e2;
+  color: white;
+  text-align: center;
+}
