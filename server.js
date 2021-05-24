@@ -143,27 +143,7 @@ http.listen(3000, function () {
             res.render("updateProfile");
         });
 
-        //post method for change newPwd
-        app.get("/changePassword" , function(req,res){
-          let newPassword = req.fields.newPwd ;
-          let UserName = req.fields.us ;
-          console.log(newPassword) ;
-          console.log(UserName) ;
-          database.collection("users").updateOne({
-              "username": UserName
-          }, {
-              $set: {
-                  "password": newPassword
-              }
-          }, function (error, data) {
-              if(error)
-              console.log(error) ;
-              else{
-                console.log("Success update password") ;
-              }
-          });
-          res.redirect("/updateProfile");
-        });
+        //post method for change newPw
 
         app.post("/changePassword" , function(req,res){
         let newPassword = req.fields.newPwd ;
