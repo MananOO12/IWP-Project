@@ -467,4 +467,5 @@ input[type="file"]{
   background-color:  #4d84e2;
   color: white;
   text-align: center;
+  z-index: 2 ; 
 }
