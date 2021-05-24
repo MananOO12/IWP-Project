@@ -326,7 +326,7 @@ http.listen(3000, function () {
         app.post("/user" , function(req,res){ //redirect users to profile page
             var userName = req.fields.uName ;
             database.collection("users").find({username: userName}).toArray(function(err,user_list){
-              database.collection("posts").find({'user.username': userName}).toArray(function(err,post_list){
+              database.collection("posts").find({'user.username': userName}).sort({$natural:-1}).toArray(function(err,post_list){
                 assert.equal(err,null) ;
                 res.render("profile",{userDetails: user_list , postDetails: post_list }) ;
               }) ;
