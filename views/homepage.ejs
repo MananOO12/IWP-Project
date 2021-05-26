@@ -1,0 +1,208 @@
+<%- include ("includes/header")%>
+<%- include ("includes/externalcss")%>
+<section>
+  <div class="gap gray-bg">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row" id="page-contents">
+            <div class="col-md-3">
+              <%-include ("includes/l_sidebar")%>
+
+            </div>
+            <div class="col-md-6">
+              <div id="add-post-box"></div>
+              <div class="loadMore" id="newsfeed">
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  var isHomePage = true;
+
+  function previewPostImage(self) {
+    var file = self.files;
+    if (file.length > 0) {
+      var fileReader = new FileReader();
+      fileReader.onload = function(event) {
+        document.getElementById("post-img-preview").style.display = "";
+        document.getElementById("post-img-preview").setAttribute("src", event.target.result);
+      };
+      fileReader.readAsDataURL(file[0]);
+    }
+  }
+
+  function previewPostVideo(self) {
+    var file = self.files;
+    if (file.length > 0) {
+      var fileReader = new FileReader();
+      fileReader.onload = function(event) {
+        document.getElementById("post-video-preview").style.display = "";
+        document.getElementById("post-video-preview").setAttribute("src", event.target.result);
+      };
+      fileReader.readAsDataURL(file[0]);
+    }
+  }
+
+  function doPost(form) {
+    var ajax = new XMLHttpRequest();
+    ajax.open("POST", "/addPost", true);
+    ajax.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = JSON.parse(this.responseText);
+        alert(response.message);
+        if (response.status = "success") {
+          document.getElementById("form-add-post").querySelector("input[name= 'image']").value = "";
+          document.getElementById("form-add-post").querySelector("input[name= 'video']").value = "";
+          document.getElementById("form-add-post").querySelector("textarea[name='caption']").value = "";
+          document.getElementById("post-img-preview").style.display = "none";
+          document.getElementById("post-video-preview").style.display = "none";
+          showNewsfeed();
+        }
+      }
+
+
+    };
+
+    var formData = new FormData(form);
+    formData.append("accessToken", localStorage.getItem("accessToken"));
+    ajax.send(formData);
+    return false;
+
+  }
+
+
+  function change(x) { //change colour of like button
+    if (document.getElementById(x).style.backgroundColor != "blue") {
+      document.getElementById(x).style.backgroundColor = "blue";
+    } else {
+      document.getElementById(x).style.backgroundColor = "";
+    }
+  }
+
+  //change colour of dislike button
+  function change1(y) {
+    if (document.getElementById(y).style.backgroundColor != "red") {
+      document.getElementById(y).style.backgroundColor = "red";
+    } else {
+      document.getElementById(y).style.backgroundColor = "";
+    }
+  }
+
+  function toggleComments(z) { //toggle between display and hide of post comments
+    var d = document.getElementById("cmt" + z);
+    if (d.style.display === "none") {
+      d.style.display = "block";
+    } else {
+      d.style.display = "none";
+    }
+  }
+
+  function showNewsfeed() {
+    var ajax = new XMLHttpRequest();
+    ajax.open("POST", "/getNewsfeed", true);
+    ajax.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = JSON.parse(this.responseText);
+        var html = "";
+        for (var a = 0; a < response.data.length; a++) {
+          var data = response.data[a];
+          var b = a + 10000; //index for view comments
+          var ctr = 10000 - a; //for index of dislike button
+          html += '<div class="central-meta item custom-box">';
+          html += '<div class="user-post">';
+          html += '<div class="friend-info">';
+          html += '<figures>';
+          html += '<img class="user-pic" src="' + mainURL + "/" + data.user.profileImage +
+            '"">';
+          html += '</figure>';
+          html += '<div class = "friend-name">';
+          html += '<ins>';
+          html += '<a href="/user/' + data.user._id + '">';
+          html += data.user.username;
+          html += '</a>';
+          html += '</ins>';
+          var createdAt = new Date(data.createdAt);
+          var date = createdAt.getDate() + "";
+          date = date.padStart(2, "0") + " " + months[createdAt.getMonth()] + "," + createdAt.getFullYear();
+          html += '<span>Uploaded on: ' + date + '</span>';
+          html += '</div>';
+          html += '<div class="post-meta">';
+          html += '<div class="description">';
+          html += '<p class="post-content">';
+          html += data.caption;
+          html += '</p>';
+          html += '</div>';
+
+          //like section
+          html += '<div>';
+          html += '<form class="post-like" method = "post" action = "/like">';
+          html += '<button class="common-btn" onclick = "change(this.id);" id = "' + a + '">';
+          html += '<input type = "hidden" value = ' + response.data[a].createdAt + ' name = "Num">';
+          html += '<input type ="hidden" value = "' + window.user.username + '" name = "liked">';
+          html += '<span id="icon"><i class="far fa-thumbs-up"></i></span>';
+          html += '</button> ';
+
+          html += '<button class="common-btn" formaction = "/dislike" onclick = "change1(this.id);" id = "' + (ctr) + '">';
+          html += '<span id="icon"><i class="far fa-thumbs-down"></i></span>';
+          html += '</button>';
+          html += '&nbsp;&nbsp';
+          html += '<p class="like-counter">' + data.likers.length + ' people liked this post' + '</p>';
+          html += '</form>';
+          html += '</div>';
+          html += '<br ><br >';
+          //end of like section
+
+          if (data.image != "") {
+            html += '<img src="' + mainURL + "/" + data.image + '">';
+
+          }
+          if (data.video != "") {
+            html += '<video style="height:359px ; width:100%;" controls src="' + mainURL + "/" + data.video + '"></video>';
+
+          }
+          html += '</div>';
+
+          html += '<button type="button" class = "common-btn viewcommentsBtn" id = "' + b + '" onclick = "toggleComments(this.id);">View Comments</button>';
+          //posted comments displayed only if atleast 1 comment has been posted
+          if (data.comments.length > 0) {
+            html += '<div class = "comments" id ="cmt' + b + '" >';
+            html += '<h3>POSTED COMMENTS</h3>';
+            for (var i = 0; i < data.comments.length; ++i) {
+              html += data.comments[i] + '<br >';
+            }
+            html += '</div>';
+          }
+          html += '<br><br>';
+
+          //comments
+          html += '<div>';
+          html += '<form  method = "post" action = "/comment" >';
+          html += ' <textarea rows="2" name="commentBody" placeholder="Provide your comment" ></textarea> ';
+          html += '<input type = "hidden" value = ' + response.data[a].createdAt + ' name = "No">';
+          html += '<input type ="hidden" value = "' + window.user.username + '" name = "commented">';
+          html += '<button class="common-btn" type="submit">Post Comment</button></form>';
+          html += '</div>';
+          //comments end
+
+          html += '</div>';
+          html += '</div>';
+          html += '</div>';
+        }
+        document.getElementById("newsfeed").innerHTML = html;
+
+      }
+    };
+    var formData = new FormData();
+    formData.append("accessToken", localStorage.getItem("accessToken"));
+    ajax.send(formData);
+  }
+</script>
+<%- include ("includes/footer")%>
