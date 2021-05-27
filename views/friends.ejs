@@ -11,7 +11,7 @@
                                         <%-include ("includes/l_sidebar") %>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="central-meta">
+                                        <div class="central-meta custom-box3">
                                             <div class="frnds">
                                                 <div class="tab-content">
                                                     <div class="tab-pane active fade show" id="frends">
@@ -36,11 +36,11 @@
                     var html = "";
                     for (var a = 0; a < window.user.friends.length; a++) {
                         var data = window.user.friends[a];
-                        html += '<li>';
+                        html += '<li class="custom-box2">';
                         html += '<div class="nearly-pepls">';
                         html += '<figure>';
                         html += '<a href="/">';
-                        html += '<img src="' + mainURL + '/' + data.profileImage + '">';
+                        html += '<img class="user-pic" src="' + mainURL + '/' + data.profileImage + '">';
                         html += '</a>';
                         html += '</figure>';
                         html += '<div class="pepl-info">';

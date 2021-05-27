@@ -2,7 +2,7 @@
 <%- include ("includes/externalcss")%>
 
 <% userDetails.forEach(function(user){ %>
-<div class="DIV1" style="width: 400px; padding: 0 25px 25px">
+<div class="DIV1" style = "width: 400px; padding: 0 25px 25px">
   <aside class="sidebar static">
     <div class="widget">
       <h4 class="widget-title">Quickies</h4>
@@ -15,8 +15,8 @@
         <li>
           <div class="user-avatar">
             <figure>
-            </figure>
-            <img class="user-pic" src=<%=user.friends[i].profileImage %> style="width: 60px; height: 70.07px">
+          </figure>
+          <img class="user-pic" src=<%=user.friends[i].profileImage %> style= "width: 60px; height: 70.07px">
           </div>
           <%= user.friends[i].username %>
         </li>
@@ -28,52 +28,52 @@
 </div>
 <div class="DIV2">
   <div id="ca1">
-    <div id="ca2">
-      <figure>
-        <img class="cover-photo" src=<%=user.coverPhoto%>>
-      </figure>
-      <div class="col md-2">
-        <div class="user-avatar">
+      <div id="ca2">
           <figure>
-            <img class="profile-image" id="profile-image" style="position:relative; left:-150px" src=<%= user.profileImage%>>
+              <img style="width:100%; height:400px;object-fit: cover;" src = <%=user.coverPhoto%>>
           </figure>
-        </div>
-        <h1><%=user.username%></h1>
-        <% postDetails.forEach(function(post){%>
-        <div class="central-meta item">
-          <div class="user-post">
-            <div class="friend-info">
-              <figure>
-                <img src=<%=post.user.profileImage%> style="width:45px;height:45px;object-fit:cover;">
-              </figure>
-              <div class="friend-name">
-                <ins>
-                  <a href="#" style="position:relative; left: -275px;"><%=post.user.username%></a>
-                </ins>
+          <div class="col md-2">
+              <div class="user-avatar">
+                  <figure>
+                      <img class="profile-image" id="profile-image" style="position:relative; left:-150px"src = <%= user.profileImage%>>
+                  </figure>
               </div>
-              <div class="post-meta">
-                <div class="description" style="position:relative ; left: -200px; color:black">
-                  <p>
-                    <%=post.caption%> <br>
-                  </p>
-                  <%=post.likers.length%> people liked this post <br>
+              <h1><%=user.username%></h1>
+              <% postDetails.forEach(function(post){%>
+                <div class="central-meta item">
+                  <div class="user-post">
+                    <div class="friend-info">
+                      <figure>
+                        <img src= <%=post.user.profileImage%> style ="width:45px;height:45px;object-fit:cover;">
+                      </figure>
+                      <div class = "friend-name">
+                        <ins>
+                          <a href="#" style = "position:relative; left: -275px;"><%=post.user.username%></a>
+                        </ins>
+                      </div>
+                      <div class="post-meta">
+                        <div class="description" style = "position:relative ; left: -200px; color:black">
+                          <p>
+                            <%=post.caption%> <br>
+                          </p>
+                          <%=post.likers.length%> people liked this post <br>
+                        </div>
+                        <img src= <%=post.image%>>
+                      </div>
+                      <div class="comment" style="position: relative ; left : -200px">
+                        <p>
+                          Comment<br>
+                          <%post.comments.forEach(function(comment){%>
+                            <%=comment%><br>
+                          <%});%>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <img src=<%=post.image%>>
-              </div>
-              <div class="comment" style="position: relative ; left : -200px">
-                <p>
-                  Comment<br>
-                  <%post.comments.forEach(function(comment){%>
-                  <%=comment%><br>
-                  <%});%>
-                </p>
-              </div>
-            </div>
+              <%});%>
           </div>
-        </div>
-        <%});%>
       </div>
-    </div>
   </div>
 </div>
 <% }); %>

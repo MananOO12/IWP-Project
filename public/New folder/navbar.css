@@ -12,23 +12,11 @@
 /* body{
 	background: black;
 } */
-
-.footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color:  #4d84e2;
-  color: white;
-  text-align: center;
-  z-index: 2 ;
-}
-
 .top-area {
     display: inline-block;
     text-align: right;
     vertical-align: middle;
-    /* width: 84%; */
+    width: 84%;
     z-index: 4;
 }
 
@@ -105,7 +93,7 @@
 
 .top-area > ul.main-menu {
     /*float: left;*/
-    margin-left: 70px;
+    margin-left: 0px;
     line-height: 60px;
 }
 
@@ -360,11 +348,9 @@ ul{
 .search_box{
 	background: #7ea7ec;
 	position: relative;
-	margin: 10px 25px;
+	margin-left: 85px;
 	border-radius: 50px;
 	display: flex;
-	width: 442px;
-	left: 65px;
 }
 
 .search_box .search_btn{
@@ -379,13 +365,6 @@ ul{
 	margin-right: 15px;
 	cursor: pointer;
 }
-
-.search{
-    position: relative;
-		right: -60px;
-}
-
-/*
 #profile-image{
     width: 150px;
     height: 150px;
@@ -393,30 +372,8 @@ ul{
     border-radius: 50%;
     border: solid 2px white;
     margin-left: 305px;
-		position: relative;
-		    position: relative;
-top: -50px;
-left: 430px;
-width: 150px;
-height: 150px;
-margin-top: -320px;
-border-radius: 50%;
-border: solid 2px white;
-margin-left: 305px;
-}
-*/
-#profile-image {
-     position: relative;
- top: -35px;
-    left: 245px;
-    width: 150px;
-    height: 150px;
-    margin-top: -320px;
-    border-radius: 50%;
-    border: solid 2px white;
-    margin-left: 305px;
-}
 
+}
 .affix {
   top: 0;
   width: 100%;
@@ -431,29 +388,19 @@ input[type="file"]{
 
 }
 #prf-cam{
-	/* position: absolute;
+	position: absolute;
 	top: 330px;
 	left: 640px;
-	font-size: 32px; */
-	position: absolute;
-    top: 460px;
-left: 628px;
-font-size: 32px;
+	font-size: 32px;
 }
 #prf-cam:hover{
 	color:#76a7fc ;
 }
 #cvr-cam{
-	/* position: absolute;
-	top: 360px;
-	    top: 415px;
-	right: 215px;
-	    right: 457px;
-	font-size: 27px; */
 	position: absolute;
-	top: 505px;
-	right: 265px;
-    font-size: 27px;
+	top: 360px;
+	right: 215px;
+	font-size: 27px;
 }
 #cvr-cam:hover{
 	color:#76a7fc ;
@@ -494,4 +441,31 @@ font-size: 32px;
 }
 .btn:hover{
     background-color: #4d84e2;
+}
+
+
+/* css for the profile page */
+
+.DIV1{
+  position : absolute ;
+  top: 100px ;
+  left:10px;
+}
+
+.DIV2{
+  position: absolute;
+	top : 100px ;
+  left: 400px;
+}
+
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:  #4d84e2;
+  color: white;
+  text-align: center;
+  z-index: 2 ; 
 }
