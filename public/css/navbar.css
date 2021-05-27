@@ -436,9 +436,10 @@ input[type="file"]{
 	left: 640px;
 	font-size: 32px; */
 	position: absolute;
-    top: 460px;
-left: 628px;
-font-size: 32px;
+	top: -142px;
+	left: 383px;
+	font-size: 32px;
+	color: #2c74f0;
 }
 #prf-cam:hover{
 	color:#76a7fc ;
@@ -451,9 +452,10 @@ font-size: 32px;
 	    right: 457px;
 	font-size: 27px; */
 	position: absolute;
-	top: 505px;
-	right: 265px;
-    font-size: 27px;
+	top: -60px;
+	right: -374px;
+	font-size: 27px;
+	color: #2c74f0;
 }
 #cvr-cam:hover{
 	color:#76a7fc ;
