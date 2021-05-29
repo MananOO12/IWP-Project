@@ -103,3 +103,8 @@
     background-color: #4d84e2;
     color: white ;
   }
+
+.post-box{
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    border-radius: 23px;
+}
