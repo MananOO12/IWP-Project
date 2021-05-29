@@ -209,7 +209,7 @@ http.listen(3000, function () {
                             });
                         }
                         // coverPhoto = "public/images" + new Date().getTime() + "-" + req.files.coverPhoto.name;
-                        coverPhoto = "public/images" + req.files.coverPhoto.name;
+                        coverPhoto = "public/images/" + req.files.coverPhoto.name;
                         fileSystem.rename(
                             req.files.coverPhoto.path,
                             coverPhoto, function (error) {

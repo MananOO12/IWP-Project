@@ -72,10 +72,10 @@
             function showAddPost() {
                 if (localStorage.getItem("accessToken")) {
                     var html = "";
-                    html += '<div class ="central-meta">';
+                    html += '<div class ="central-meta post-box">';
                     html += '<div class="new-postbox">';
                     html += '<figure>';
-                    html += '<img src="' + mainURL + '/' + window.user.profileImage + '" >';
+                    html += '<img class="user-pic" src="' + mainURL + '/' + window.user.profileImage + '" >';
                     html += '</figure>';
                     html += '<div class="newpst-input">';
                     html += '<form method ="post" id="form-add-post" onsubmit="return doPost(this);">';
