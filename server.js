@@ -31,6 +31,7 @@ socketIO.on("connection", function (socket) {
     console.log("User Connected!", socket.id);
     socketID = socket.id;
 });
+
 http.listen(3000, function () {
     console.log("Server started");
     mongoClient.connect("mongodb+srv://iwpt:iwptproject@cluster0.gkbzq.mongodb.net/social?retryWrites=true&w=majority", {
@@ -39,6 +40,8 @@ http.listen(3000, function () {
     }, function (error, client) {
         var database = client.db("Chitchat");
         console.log("Database connected");
+
+// Aryan part started
 
         app.get("/", function (req, res) {
             res.render("signup");
@@ -142,7 +145,9 @@ http.listen(3000, function () {
         app.get("/updateProfile", function (req, res) {
             res.render("updateProfile");
         });
+// Aryan part ended 
 
+// ateeth part started
         //post method for change newPw
 
         app.post("/changePassword" , function(req,res){
@@ -165,7 +170,9 @@ http.listen(3000, function () {
         });
         res.redirect("/updateProfile");
       });
+// ateeth part ended
 
+// aryan started
         app.post("/getUser", function (req, res) {
             var accessToken = req.fields.accessToken;
             database.collection("users").findOne({
@@ -189,6 +196,7 @@ http.listen(3000, function () {
         app.get("/logout", function (req, res) {
             res.redirect("/signup");
         });
+
         app.post("/uploadCoverPhoto", function (req, res) {
             var accessToken = req.fields.accessToken;
             var coverPhoto = "";
@@ -321,7 +329,9 @@ http.listen(3000, function () {
                 }
             });
         });
+// aryan end
 
+//naman start
         //new part by ateeth
         app.post("/user" , function(req,res){ //redirect users to profile page
             var userName = req.fields.uName ;
@@ -342,7 +352,9 @@ http.listen(3000, function () {
               }) ;
             });
         }) ;
+// naman ended
 
+// ateeth start
         app.post("/like", function (req, res) { //likers to the database
             let liked = req.fields.liked;//liker name
             let num = Number(req.fields.Num); //createdAt field
@@ -428,8 +440,9 @@ http.listen(3000, function () {
             );
             res.redirect("/homepage");
         });
+// ateeth end
 
-
+// manan start
         app.get("/homepage", function (req, res) {
             res.render("homepage");
         });
@@ -546,6 +559,9 @@ http.listen(3000, function () {
                 }
             });
         });
+// manan end
+
+//aryan start
         app.get("/search/:query", function (req, res) {
             var query = req.params.query;
             res.render("search", {
@@ -887,6 +903,9 @@ http.listen(3000, function () {
 
             });
         });
+//aryan end
+
+//naman start
         app.get("/notifications", function (req, res) {
             res.render("notifications");
         });
@@ -895,3 +914,4 @@ http.listen(3000, function () {
 
     });
 });
+// naman end
